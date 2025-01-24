@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "JustDice",
-    "slug": "JustDice",
-    "version": "1.0.0",
+    "name": "SixSimpleDice",
+    "slug": "SixSimpleDice",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -13,13 +13,12 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.20boyerd.SixSimpleDice"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+      "package": "com.boyerd.sixsimpledice",
+      "versionCode": 1
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +30,17 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f58c856d-8051-4ba3-925e-0e5da8d25920"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/f58c856d-8051-4ba3-925e-0e5da8d25920"
     }
   }
 }
