@@ -2,6 +2,7 @@ import { Text, View, StyleSheet, Button, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import ShakeSensor from "../ShakeSensor";
 
+
 let one = "\u2680";
 let two = "\u2681";
 let three = "\u2682";
@@ -21,6 +22,9 @@ export default function Index() {
   const [fourthDice, setFourthDice] = React.useState(four);
   const [fifthDice, setFifthDice] = React.useState(five);
   const [sixthDice, setSixthDice] = React.useState(six);
+  
+  const [isRolling, setIsRolling] = React.useState(false);
+
   const [firstDiceColor, setFirstDiceColor] = React.useState("black");
   const [secondDiceColor, setSecondDiceColor] = React.useState("black");
   const [thirdDiceColor, setThirdDiceColor] = React.useState("black");
@@ -61,22 +65,67 @@ export default function Index() {
 
       <View style={styles.bottomBar}>
         <View style={styles.rollButton}>
-          <Button onPress={roll} title="Roll" />
+          <Button disabled={isRolling} onPress={roll} title="Roll" />
         </View>
       </View>
 
     </View>
   );
 
-  function roll() {
+
+  async function roll() {
+
+    setIsRolling(true);
+    
     setFirstDice(pipArray[randomNum()-1]);
     setSecondDice(pipArray[randomNum()-1]);
     setThirdDice(pipArray[randomNum()-1]);
     setFourthDice(pipArray[randomNum()-1]);
     setFifthDice(pipArray[randomNum()-1]);
     setSixthDice(pipArray[randomNum()-1]);
+
+    await delay(100)
+    
+    setFirstDice(pipArray[randomNum()-1]);
+    setSecondDice(pipArray[randomNum()-1]);
+    setThirdDice(pipArray[randomNum()-1]);
+    setFourthDice(pipArray[randomNum()-1]);
+    setFifthDice(pipArray[randomNum()-1]);
+    setSixthDice(pipArray[randomNum()-1]);
+  
+    await delay(100)
+
+    setFirstDice(pipArray[randomNum()-1]);
+    setSecondDice(pipArray[randomNum()-1]);
+    setThirdDice(pipArray[randomNum()-1]);
+    setFourthDice(pipArray[randomNum()-1]);
+    setFifthDice(pipArray[randomNum()-1]);
+    setSixthDice(pipArray[randomNum()-1]);
+
+    await delay(100)
+
+    setFirstDice(pipArray[randomNum()-1]);
+    setSecondDice(pipArray[randomNum()-1]);
+    setThirdDice(pipArray[randomNum()-1]);
+    setFourthDice(pipArray[randomNum()-1]);
+    setFifthDice(pipArray[randomNum()-1]);
+    setSixthDice(pipArray[randomNum()-1]);
+    
+    await delay(100)
+
+    setFirstDice(pipArray[randomNum()-1]);
+    setSecondDice(pipArray[randomNum()-1]);
+    setThirdDice(pipArray[randomNum()-1]);
+    setFourthDice(pipArray[randomNum()-1]);
+    setFifthDice(pipArray[randomNum()-1]);
+    setSixthDice(pipArray[randomNum()-1]);
+
+    setIsRolling(false);
   }
 
+  function delay(durationMS) {
+      return new Promise(resolve => setTimeout(resolve, durationMS))
+  }
   function add() {
     if (diceCount == 0) {
       setFirstDiceColor("black");
