@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, Button, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
+import ShakeSensor from "./ShakeSensor";
 
 let one = "\u2680";
 let two = "\u2681";
@@ -11,7 +12,6 @@ let pipArray = [one, two, three, four, five, six];
 
 const randomNum = (min = 1, max = 6) => Math.floor(Math.random() * (max - min + 1)) + min;
 let diceCount = 6;
-
 
 
 export default function Index() {
@@ -28,7 +28,6 @@ export default function Index() {
   const [fifthDiceColor, setFifthDiceColor] = React.useState("black");
   const [sixthDiceColor, setSixthDiceColor] = React.useState("black");
 
-
   return (
     <View style={styles.main}>
 
@@ -40,6 +39,8 @@ export default function Index() {
           <Button onPress={add} title="Add Die" />
         </View>
       </View>
+
+      <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
 
       <View style={styles.diceSection}>
         <View style={styles.diceRow}>
@@ -171,5 +172,13 @@ const styles = StyleSheet.create({
   },
   addButton: {
     
-  }
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text: {
+    fontSize: 24,
+  },
 });
