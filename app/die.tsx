@@ -18,7 +18,7 @@ export default function Die(props: DieProps) {
     if (isHeld) {
         return (
             <View>
-                <div style={{width:"25px", height:"25px", border:"4px solid red"}}>
+                <div style={{width:"70px", height:"770px", border:"4px solid red"}}>
                     {currentValue}
                 </div>
             </View>
@@ -26,7 +26,7 @@ export default function Die(props: DieProps) {
     } else {
         return (
             <View>
-                <div style={{width:"25px", height:"25px", border:"4px solid black"}}>
+                <div style={{width:"70px", height:"70px", border:"4px solid black"}}>
                     {currentValue}
                 </div>
             </View>
