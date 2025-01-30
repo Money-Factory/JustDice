@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet, Button, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import ShakeSensor from "./ShakeSensor";
+import ShakeSensor from "../ShakeSensor";
 
 let one = "\u2680";
 let two = "\u2681";
