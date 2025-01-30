@@ -14,7 +14,6 @@ export default function RootLayout() {
           }}
         />
         <Drawer.Screen
-<<<<<<< HEAD
           name="yacht" // This is the name of the page and must match the url from root
           options={{
             drawerLabel: 'Yacht Dice',
@@ -26,15 +25,16 @@ export default function RootLayout() {
           options={{
             drawerLabel: 'In App Purchases',
             title: 'In App Purchases',
-=======
+          }}
+        />
+        <Drawer.Screen
           name="threes" // This is the name of the page and must match the url from root
           options={{
             drawerLabel: 'Threes',
             title: 'Threes',
->>>>>>> devin/threes
           }}
         />
-      </Drawer>
-    </GestureHandlerRootView>
+    </Drawer>
+    </GestureHandlerRootView >
   );
 }
