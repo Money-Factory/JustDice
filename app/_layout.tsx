@@ -14,10 +14,10 @@ export default function RootLayout() {
           }}
         />
         <Drawer.Screen
-          name="user/[id]" // This is the name of the page and must match the url from root
+          name="threes" // This is the name of the page and must match the url from root
           options={{
-            drawerLabel: 'User',
-            title: 'overview',
+            drawerLabel: 'Threes',
+            title: 'Threes',
           }}
         />
       </Drawer>
