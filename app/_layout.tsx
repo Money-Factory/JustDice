@@ -34,6 +34,13 @@ export default function RootLayout() {
             title: 'Threes',
           }}
         />
+        <Drawer.Screen
+            name="zanzibar" // This is the name of the page and must match the url from root
+            options={{
+                drawerLabel: 'Zanzibar',
+                title: 'Zanzibar',
+            }}
+        />
     </Drawer>
     </GestureHandlerRootView >
   );
