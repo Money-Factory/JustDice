@@ -39,6 +39,7 @@ export default function ThreesGame() {
 
       <View style={styles.topBar}>
         <View style={styles.subtractButton}>
+            <Text>Current Value: {diceValue}</Text>
         </View>
         <View style={styles.addButton}>
         </View>
@@ -82,38 +83,153 @@ export default function ThreesGame() {
     </View>
   );
 
+
   async function swapColor(diceNum:number) {
+    let tempDiceValue = diceValue;
+
     if (diceNum == 1) {
         if (secondDiceColor == "black") {
             setSecondDiceColor("red");
+            if (secondDice == one) {
+                tempDiceValue += 1;
+            } else if (secondDice == two) {
+                tempDiceValue += 2;
+            } else if (secondDice == four) {
+                tempDiceValue += 4;
+            } else if (secondDice == five) {
+                tempDiceValue += 5;
+            } else if (secondDice == six) {
+                tempDiceValue += 6;
+            }
         } else {
             setSecondDiceColor("black");
+            if (secondDice == one) {
+                tempDiceValue -= 1;
+            } else if (secondDice == two) {
+                tempDiceValue -= 2;
+            } else if (secondDice == four) {
+                tempDiceValue -= 4;
+            } else if (secondDice == five) {
+                tempDiceValue -= 5;
+            } else if (secondDice == six) {
+                tempDiceValue -= 6;
+            }
         }
     } else if (diceNum == 2) {
         if (thirdDiceColor == "black") {
             setThirdDiceColor("red");
+            if (thirdDice == one) {
+                tempDiceValue += 1;
+            } else if (thirdDice == two) {
+                tempDiceValue += 2;
+            } else if (thirdDice == four) {
+                tempDiceValue += 4;
+            } else if (thirdDice == five) {
+                tempDiceValue += 5;
+            } else if (thirdDice == six) {
+                tempDiceValue += 6;
+            }
         } else {
             setThirdDiceColor("black");
+            if (thirdDice == one) {
+                tempDiceValue -= 1;
+            } else if (thirdDice == two) {
+                tempDiceValue -= 2;
+            } else if (thirdDice == four) {
+                tempDiceValue -= 4;
+            } else if (thirdDice == five) {
+                tempDiceValue -= 5;
+            } else if (thirdDice == six) {
+                tempDiceValue -= 6;
+            }
         }
     } else if (diceNum == 3) {
         if (fourthDiceColor == "black") {
             setFourthDiceColor("red");
+            if (fourthDice == one) {
+                tempDiceValue += 1;
+            } else if (fourthDice == two) {
+                tempDiceValue += 2;
+            } else if (fourthDice == four) {
+                tempDiceValue += 4;
+            } else if (fourthDice == five) {
+                tempDiceValue += 5;
+            } else if (fourthDice == six) {
+                tempDiceValue += 6;
+            }
         } else {
             setFourthDiceColor("black");
+            if (fourthDice == one) {
+                tempDiceValue -= 1;
+            } else if (fourthDice == two) {
+                tempDiceValue -= 2;
+            } else if (fourthDice == four) {
+                tempDiceValue -= 4;
+            } else if (fourthDice == five) {
+                tempDiceValue -= 5;
+            } else if (fourthDice == six) {
+                tempDiceValue -= 6;
+            }
         }
     } else if (diceNum == 4) {
         if (fifthDiceColor == "black") {
             setFifthDiceColor("red");
+            if (fifthDice == one) {
+                tempDiceValue += 1;
+            } else if (fifthDice == two) {
+                tempDiceValue += 2;
+            } else if (fifthDice == four) {
+                tempDiceValue += 4;
+            } else if (fifthDice == five) {
+                tempDiceValue += 5;
+            } else if (fifthDice == six) {
+                tempDiceValue += 6;
+            }
         } else {
             setFifthDiceColor("black");
+            if (fifthDice == one) {
+                tempDiceValue -= 1;
+            } else if (fifthDice == two) {
+                tempDiceValue -= 2;
+            } else if (fifthDice == four) {
+                tempDiceValue -= 4;
+            } else if (fifthDice == five) {
+                tempDiceValue -= 5;
+            } else if (fifthDice == six) {
+                tempDiceValue -= 6;
+            }
         }
     } else if (diceNum == 5) {
         if (sixthDiceColor == "black") {
             setSixthDiceColor("red");
+            if (sixthDice == one) {
+                tempDiceValue += 1;
+            } else if (sixthDice == two) {
+                tempDiceValue += 2;
+            } else if (sixthDice == four) {
+                tempDiceValue += 4;
+            } else if (sixthDice == five) {
+                tempDiceValue += 5;
+            } else if (sixthDice == six) {
+                tempDiceValue += 6;
+            }
         } else {
             setSixthDiceColor("black");
+            if (sixthDice == one) {
+                tempDiceValue -= 1;
+            } else if (sixthDice == two) {
+                tempDiceValue -= 2;
+            } else if (sixthDice == four) {
+                tempDiceValue -= 4;
+            } else if (sixthDice == five) {
+                tempDiceValue -= 5;
+            } else if (sixthDice == six) {
+                tempDiceValue -= 6;
+            }
         }
     }
+
+    setDiceValue(tempDiceValue);
   }
 
 
@@ -160,22 +276,6 @@ export default function ThreesGame() {
     sixthDiceColor == "black" ? setSixthDice(pipArray[randomNum()-1]) : null;
 
     setIsRolling(false);
-
-    let diceValue:number = 0;
-
-    if (firstDice == one) {
-        diceValue += 1;
-    } else if (firstDice == two) {
-        diceValue += 2;
-    } else if (firstDice == four) {
-        diceValue += 4;
-    } else if (firstDice == five) {
-        diceValue += 5;
-    } else if (firstDice == six) {
-        diceValue += 6;
-    }
-
-    setDiceValue(diceValue);
   }
 
   function delay(durationMS:number) {
