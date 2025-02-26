@@ -1,6 +1,6 @@
 import { Slot } from "expo-router";
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Drawer } from 'expo-router/drawer';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Drawer } from "expo-router/drawer";
 
 export default function RootLayout() {
   return (
@@ -9,32 +9,39 @@ export default function RootLayout() {
         <Drawer.Screen
           name="index" // This is the name of the page and must match the url from root
           options={{
-            drawerLabel: 'Liar\'s Dice',
-            title: 'Liar\'s Dice',
+            drawerLabel: "Liar's Dice",
+            title: "Liar's Dice",
           }}
         />
         <Drawer.Screen
           name="yacht" // This is the name of the page and must match the url from root
           options={{
-            drawerLabel: 'Yacht Dice',
-            title: 'Yacht Dice',
+            drawerLabel: "Yacht Dice",
+            title: "Yacht Dice",
           }}
         />
         <Drawer.Screen
           name="purchase" // This is the name of the page and must match the url from root
           options={{
-            drawerLabel: 'In App Purchases',
-            title: 'In App Purchases',
+            drawerLabel: "In App Purchases",
+            title: "In App Purchases",
           }}
         />
         <Drawer.Screen
           name="threes" // This is the name of the page and must match the url from root
           options={{
-            drawerLabel: 'Threes',
-            title: 'Threes',
+            drawerLabel: "Threes",
+            title: "Threes",
           }}
         />
-    </Drawer>
-    </GestureHandlerRootView >
+        <Drawer.Screen
+          name="help" // This is the name of the page and must match the url from root
+          options={{
+            drawerLabel: "Help",
+            title: "Help",
+          }}
+        />
+      </Drawer>
+    </GestureHandlerRootView>
   );
 }
