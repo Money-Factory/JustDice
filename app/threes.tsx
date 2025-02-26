@@ -55,12 +55,8 @@ export default function ThreesGame() {
 
       <View style={styles.diceSection}>
         <View style={styles.diceRow}>
-<<<<<<< HEAD
-          <Pressable onPressIn={() => swapColor(1)}>
-=======
         
           <Pressable disabled={pressDisabled} onPressIn={() => swapColor(1)}>
->>>>>>> bc4c5b1b167a71d3849c9321a0428d30ffbd5f4b
             <Text style={{fontSize: 175, color: secondDiceColor}}>{secondDice}</Text>
           </Pressable>
         </View>
