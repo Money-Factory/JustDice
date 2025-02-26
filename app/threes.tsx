@@ -24,8 +24,11 @@ export default function ThreesGame() {
   const [sixthDice, setSixthDice] = React.useState(six);
   
   const [isRolling, setIsRolling] = React.useState(false);
-  const [diceValue, setDiceValue] = React.useState(0)
+  const [diceValue, setDiceValue] = React.useState(0);
+  const [lastDiceValue, setLastDiceValue] = React.useState(0);
   const [rollCount, setRollCount] = React.useState(0);
+
+  const [pressDisabled, setPressDisabled] = React.useState(true);
 
   const [firstDiceColor, setFirstDiceColor] = React.useState("black");
   const [secondDiceColor, setSecondDiceColor] = React.useState("black");
@@ -40,8 +43,11 @@ export default function ThreesGame() {
       <View style={styles.topBar}>
         <View style={styles.subtractButton}>
             <Text>Current Value: {diceValue}</Text>
+            <Text>Last Score: {lastDiceValue}</Text>
         </View>
         <View style={styles.addButton}>
+            <Text>Current Round: {rollCount}</Text>
+            <Button onPress={reset} title="Reset" />
         </View>
       </View>
 
@@ -50,25 +56,25 @@ export default function ThreesGame() {
       <View style={styles.diceSection}>
         <View style={styles.diceRow}>
         
-          <Pressable onPressIn={() => swapColor(1)}>
+          <Pressable disabled={pressDisabled} onPressIn={() => swapColor(1)}>
             <Text style={{fontSize: 175, color: secondDiceColor}}>{secondDice}</Text>
           </Pressable>
         </View>
 
         <View style={styles.diceRow}>
-        <Pressable onPressIn={() => swapColor(2)}>
+        <Pressable disabled={pressDisabled} onPressIn={() => swapColor(2)}>
             <Text style={{fontSize: 175, color: thirdDiceColor}}>{thirdDice}</Text>
         </Pressable>
-        <Pressable onPressIn={() => swapColor(3)}>
+        <Pressable disabled={pressDisabled} onPressIn={() => swapColor(3)}>
           <Text style={{fontSize: 175, color: fourthDiceColor}}>{fourthDice}</Text>
         </Pressable>
         </View>
 
         <View style={styles.diceRow}>
-        <Pressable onPressIn={() => swapColor(4)}>
+        <Pressable  disabled={pressDisabled} onPressIn={() => swapColor(4)}>
             <Text style={{fontSize: 175, color: fifthDiceColor}}>{fifthDice}</Text>
         </Pressable>
-        <Pressable onPressIn={() => swapColor(5)}>
+        <Pressable disabled={pressDisabled} onPressIn={() => swapColor(5)}>
             <Text style={{fontSize: 175, color: sixthDiceColor}}>{sixthDice}</Text>
         </Pressable>
         </View>
@@ -232,8 +238,41 @@ export default function ThreesGame() {
     setDiceValue(tempDiceValue);
   }
 
+  async function reset() {
+    setRollCount(0);
+    setLastDiceValue(diceValue);
+    setDiceValue(0);
+
+    setSecondDiceColor("black");
+    setThirdDiceColor("black");
+    setFourthDiceColor("black");
+    setFifthDiceColor("black");
+    setSixthDiceColor("black");
+
+    setPressDisabled(true);
+  }
 
   async function roll() {
+
+    if(pressDisabled == true) {
+        setPressDisabled(false);
+    }
+
+    setRollCount(rollCount+1);
+
+    if (rollCount == 5) {
+      setRollCount(0);
+      setLastDiceValue(diceValue);
+      setDiceValue(0);
+
+      setSecondDiceColor("black");
+      setThirdDiceColor("black");
+      setFourthDiceColor("black");
+      setFifthDiceColor("black");
+      setSixthDiceColor("black");
+
+      setPressDisabled(true);
+    }
 
     setIsRolling(true);
     
