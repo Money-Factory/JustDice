@@ -123,7 +123,7 @@ export default function Index() {
     setIsRolling(false);
   }
 
-  function delay(durationMS) {
+  function delay(durationMS:number) {
       return new Promise(resolve => setTimeout(resolve, durationMS))
   }
   function add() {
