@@ -37,8 +37,8 @@ export default function RootLayout() {
         <Drawer.Screen
           name="poker" // This is the name of the page and must match the url from root
           options={{
-            drawerLabel: 'Poker Dice',
-            title: 'Poker Dice',
+            drawerLabel: 'Poker',
+            title: 'Poker',
           }}
         />
         <Drawer.Screen
