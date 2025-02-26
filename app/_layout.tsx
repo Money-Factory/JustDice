@@ -28,6 +28,13 @@ export default function RootLayout() {
           }}
         />
         <Drawer.Screen
+          name="bunco" // This is the name of the page and must match the url from root
+          options={{
+            drawerLabel: 'Bunco',
+            title: 'Bunco',
+          }}
+        />
+        <Drawer.Screen
           name="poker" // This is the name of the page and must match the url from root
           options={{
             drawerLabel: 'Poker Dice',
