@@ -21,13 +21,6 @@ export default function RootLayout() {
           }}
         />
         <Drawer.Screen
-          name="purchase" // This is the name of the page and must match the url from root
-          options={{
-            drawerLabel: 'In App Purchases',
-            title: 'In App Purchases',
-          }}
-        />
-        <Drawer.Screen
           name="threes" // This is the name of the page and must match the url from root
           options={{
             drawerLabel: 'Threes',
