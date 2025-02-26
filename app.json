@@ -19,7 +19,6 @@
     },
     "android": {
       "package": "com.boyerd.sixsimpledice",
-      "versionCode": 1
     },
     "web": {
       "bundler": "metro",
