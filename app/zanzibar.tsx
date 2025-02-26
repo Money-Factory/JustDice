@@ -37,12 +37,14 @@ export default function Zanzibar() {
     return (
         <View style={styles.main}>
             <View style={styles.topBar}>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 10 }}>
-                    <Text style={{fontSize: 24}}>Roll Number: {rollNumber}</Text>
-                    <Text style={{fontSize: 24}}>      </Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 20 }}>
+                    <Text style={{fontSize: 24}}>Roll: {rollNumber}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 20 }}>
                     <Text style={{fontSize: 24}}>Points: {points}</Text>
-                    <Text style={{fontSize: 24}}>      </Text>
-                    <Text style={{fontSize: 24}}>Highest Points: {highest}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 20 }}>
+                    <Text style={{fontSize: 24}}>Highest Roll: {highest}</Text>
                 </View>
             </View>
 
