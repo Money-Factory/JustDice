@@ -93,6 +93,7 @@ export default function ThreesGame() {
   async function swapColor(diceNum:number) {
     let tempDiceValue = diceValue;
 
+
     if (diceNum == 1) {
         if (secondDiceColor == "black") {
             setSecondDiceColor("red");
@@ -107,20 +108,22 @@ export default function ThreesGame() {
             } else if (secondDice == six) {
                 tempDiceValue += 6;
             }
-        } else {
-            setSecondDiceColor("black");
-            if (secondDice == one) {
-                tempDiceValue -= 1;
-            } else if (secondDice == two) {
-                tempDiceValue -= 2;
-            } else if (secondDice == four) {
-                tempDiceValue -= 4;
-            } else if (secondDice == five) {
-                tempDiceValue -= 5;
-            } else if (secondDice == six) {
-                tempDiceValue -= 6;
-            }
-        }
+            setIsRolling(false);
+        } 
+        // else {
+        //     setSecondDiceColor("black");
+        //     if (secondDice == one) {
+        //         tempDiceValue -= 1;
+        //     } else if (secondDice == two) {
+        //         tempDiceValue -= 2;
+        //     } else if (secondDice == four) {
+        //         tempDiceValue -= 4;
+        //     } else if (secondDice == five) {
+        //         tempDiceValue -= 5;
+        //     } else if (secondDice == six) {
+        //         tempDiceValue -= 6;
+        //     }
+        // }
     } else if (diceNum == 2) {
         if (thirdDiceColor == "black") {
             setThirdDiceColor("red");
@@ -135,20 +138,22 @@ export default function ThreesGame() {
             } else if (thirdDice == six) {
                 tempDiceValue += 6;
             }
-        } else {
-            setThirdDiceColor("black");
-            if (thirdDice == one) {
-                tempDiceValue -= 1;
-            } else if (thirdDice == two) {
-                tempDiceValue -= 2;
-            } else if (thirdDice == four) {
-                tempDiceValue -= 4;
-            } else if (thirdDice == five) {
-                tempDiceValue -= 5;
-            } else if (thirdDice == six) {
-                tempDiceValue -= 6;
-            }
-        }
+            setIsRolling(false);
+        } 
+        // else {
+        //     setThirdDiceColor("black");
+        //     if (thirdDice == one) {
+        //         tempDiceValue -= 1;
+        //     } else if (thirdDice == two) {
+        //         tempDiceValue -= 2;
+        //     } else if (thirdDice == four) {
+        //         tempDiceValue -= 4;
+        //     } else if (thirdDice == five) {
+        //         tempDiceValue -= 5;
+        //     } else if (thirdDice == six) {
+        //         tempDiceValue -= 6;
+        //     }
+        // }
     } else if (diceNum == 3) {
         if (fourthDiceColor == "black") {
             setFourthDiceColor("red");
@@ -163,20 +168,22 @@ export default function ThreesGame() {
             } else if (fourthDice == six) {
                 tempDiceValue += 6;
             }
-        } else {
-            setFourthDiceColor("black");
-            if (fourthDice == one) {
-                tempDiceValue -= 1;
-            } else if (fourthDice == two) {
-                tempDiceValue -= 2;
-            } else if (fourthDice == four) {
-                tempDiceValue -= 4;
-            } else if (fourthDice == five) {
-                tempDiceValue -= 5;
-            } else if (fourthDice == six) {
-                tempDiceValue -= 6;
-            }
-        }
+            setIsRolling(false);
+        } 
+        // else {
+        //     setFourthDiceColor("black");
+        //     if (fourthDice == one) {
+        //         tempDiceValue -= 1;
+        //     } else if (fourthDice == two) {
+        //         tempDiceValue -= 2;
+        //     } else if (fourthDice == four) {
+        //         tempDiceValue -= 4;
+        //     } else if (fourthDice == five) {
+        //         tempDiceValue -= 5;
+        //     } else if (fourthDice == six) {
+        //         tempDiceValue -= 6;
+        //     }
+        // }
     } else if (diceNum == 4) {
         if (fifthDiceColor == "black") {
             setFifthDiceColor("red");
@@ -191,20 +198,22 @@ export default function ThreesGame() {
             } else if (fifthDice == six) {
                 tempDiceValue += 6;
             }
-        } else {
-            setFifthDiceColor("black");
-            if (fifthDice == one) {
-                tempDiceValue -= 1;
-            } else if (fifthDice == two) {
-                tempDiceValue -= 2;
-            } else if (fifthDice == four) {
-                tempDiceValue -= 4;
-            } else if (fifthDice == five) {
-                tempDiceValue -= 5;
-            } else if (fifthDice == six) {
-                tempDiceValue -= 6;
-            }
+            setIsRolling(false);
         }
+        // else {
+        //     setFifthDiceColor("black");
+        //     if (fifthDice == one) {
+        //         tempDiceValue -= 1;
+        //     } else if (fifthDice == two) {
+        //         tempDiceValue -= 2;
+        //     } else if (fifthDice == four) {
+        //         tempDiceValue -= 4;
+        //     } else if (fifthDice == five) {
+        //         tempDiceValue -= 5;
+        //     } else if (fifthDice == six) {
+        //         tempDiceValue -= 6;
+        //     }
+        // }
     } else if (diceNum == 5) {
         if (sixthDiceColor == "black") {
             setSixthDiceColor("red");
@@ -219,20 +228,23 @@ export default function ThreesGame() {
             } else if (sixthDice == six) {
                 tempDiceValue += 6;
             }
-        } else {
-            setSixthDiceColor("black");
-            if (sixthDice == one) {
-                tempDiceValue -= 1;
-            } else if (sixthDice == two) {
-                tempDiceValue -= 2;
-            } else if (sixthDice == four) {
-                tempDiceValue -= 4;
-            } else if (sixthDice == five) {
-                tempDiceValue -= 5;
-            } else if (sixthDice == six) {
-                tempDiceValue -= 6;
-            }
+            setIsRolling(false);
         }
+        //  else {
+        //     setSixthDiceColor("black");
+        //     if (sixthDice == one) {
+        //         tempDiceValue -= 1;
+        //     } else if (sixthDice == two) {
+        //         tempDiceValue -= 2;
+        //     } else if (sixthDice == four) {
+        //         tempDiceValue -= 4;
+        //     } else if (sixthDice == five) {
+        //         tempDiceValue -= 5;
+        //     } else if (sixthDice == six) {
+        //         tempDiceValue -= 6;
+        //     }
+        // }
+        
     }
 
     setDiceValue(tempDiceValue);
@@ -314,7 +326,7 @@ export default function ThreesGame() {
     fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum()-1]) : null;
     sixthDiceColor == "black" ? setSixthDice(pipArray[randomNum()-1]) : null;
 
-    setIsRolling(false);
+    //setIsRolling(false);
   }
 
   function delay(durationMS:number) {
