@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingLeft: 10,
     paddingRight: 10,
-    paddingTop: 50,
+    paddingTop: 10,
     backgroundColor: "white",
   },
   bottomBar: {
