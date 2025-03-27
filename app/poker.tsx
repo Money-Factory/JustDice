@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet, Button, Pressable } from "react-native";
 import React, { useEffect } from "react";
-import ShakeSensor from "../ShakeSensor";
+import ShakeSensor from "../components/ShakeSensor";
 import { finishScreenTransition } from "react-native-reanimated";
 
 let ACE = "\u0041";
@@ -81,7 +81,7 @@ export default function PokerDice() {
     const [fourthCard, setFourthCard] = React.useState(ACE);
     const [fifthCard, setFifthCard] = React.useState(ACE);
 
-    const [isRolling, setIsRolling] = React.useState(false);
+  const [isRolling, setIsRolling] = React.useState(false);
 
     const [handLabel, setHandLabel] = React.useState("NONE")
     const [handRank, setHandRank] = React.useState("NONE")
@@ -378,7 +378,7 @@ export default function PokerDice() {
                     </View>
                   </View>
 
-            <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
+      <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
 
             <View style={styles.diceSection}>
                 <View style={styles.diceRow}>
@@ -412,14 +412,13 @@ export default function PokerDice() {
                 </View>
             </View>
 
-            <View style={styles.bottomBar}>
-                <View style={styles.rollButton}>
-                    <Button disabled={isRolling} onPress={roll} title="Roll" />
-                </View>
-            </View>
-
+      <View style={styles.bottomBar}>
+        <View style={styles.rollButton}>
+          <Button disabled={isRolling} onPress={roll} title="Roll" />
         </View>
-    )
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

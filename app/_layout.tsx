@@ -1,4 +1,3 @@
-import { Slot } from "expo-router";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
 
@@ -14,46 +13,39 @@ export default function RootLayout() {
           }}
         />
         <Drawer.Screen
-          name="yacht" // This is the name of the page and must match the url from root
+          name="fivedice" // This is the name of the page and must match the url from root
           options={{
-            drawerLabel: "Yacht Dice",
-            title: "Yacht Dice",
+            drawerLabel: "Simple Dice",
+            title: "Simple Dice",
           }}
         />
         <Drawer.Screen
           name="threes" // This is the name of the page and must match the url from root
           options={{
-            drawerLabel: 'Threes',
-            title: 'Threes',
-          }}
-        />
-        <Drawer.Screen
-          name="bunco" // This is the name of the page and must match the url from root
-          options={{
-            drawerLabel: 'Bunco',
-            title: 'Bunco',
+            drawerLabel: "Threes",
+            title: "Threes",
           }}
         />
         <Drawer.Screen
           name="poker" // This is the name of the page and must match the url from root
           options={{
-            drawerLabel: 'Poker',
-            title: 'Poker',
+            drawerLabel: "Poker",
+            title: "Poker",
           }}
         />
         <Drawer.Screen
-          name="help" // This is the name of the page and must match the url from root
+          name="zanzibar" // This is the name of the page and must match the url from root
           options={{
-            drawerLabel: "Help",
-            title: "Help",
+            drawerLabel: "Zanzibar",
+            title: "Zanzibar",
           }}
         />
         <Drawer.Screen
-            name="zanzibar" // This is the name of the page and must match the url from root
-            options={{
-                drawerLabel: 'Zanzibar',
-                title: 'Zanzibar',
-            }}
+          name="rules" // This is the name of the page and must match the url from root
+          options={{
+            drawerLabel: "Rules",
+            title: "Rules",
+          }}
         />
       </Drawer>
     </GestureHandlerRootView>

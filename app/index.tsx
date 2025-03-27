@@ -1,7 +1,6 @@
-import { Text, View, StyleSheet, Button, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
-import ShakeSensor from "../ShakeSensor";
-
+import { Text, View, StyleSheet, Button } from "react-native";
+import React from "react";
+import ShakeSensor from "../components/ShakeSensor";
 
 let one = "\u2680";
 let two = "\u2681";
@@ -11,9 +10,9 @@ let five = "\u2684";
 let six = "\u2685";
 let pipArray = [one, two, three, four, five, six];
 
-const randomNum = (min = 1, max = 6) => Math.floor(Math.random() * (max - min + 1)) + min;
+const randomNum = (min = 1, max = 6) =>
+  Math.floor(Math.random() * (max - min + 1)) + min;
 let diceCount = 6;
-
 
 export default function Index() {
   const [firstDice, setFirstDice] = React.useState(one);
@@ -22,7 +21,7 @@ export default function Index() {
   const [fourthDice, setFourthDice] = React.useState(four);
   const [fifthDice, setFifthDice] = React.useState(five);
   const [sixthDice, setSixthDice] = React.useState(six);
-  
+
   const [isRolling, setIsRolling] = React.useState(false);
 
   const [firstDiceColor, setFirstDiceColor] = React.useState("black");
@@ -34,10 +33,9 @@ export default function Index() {
 
   return (
     <View style={styles.main}>
-
       <View style={styles.topBar}>
         <View style={styles.subtractButton}>
-          <Button onPress={subtract} title="Remove Die"/>
+          <Button onPress={subtract} title="Remove Die" />
         </View>
         <View style={styles.addButton}>
           <Button onPress={add} title="Add Die" />
@@ -48,18 +46,30 @@ export default function Index() {
 
       <View style={styles.diceSection}>
         <View style={styles.diceRow}>
-          <Text style={{fontSize: 175, color: firstDiceColor}}>{firstDice}</Text>
-          <Text style={{fontSize: 175, color: secondDiceColor}}>{secondDice}</Text>
+          <Text style={{ fontSize: 175, color: firstDiceColor }}>
+            {firstDice}
+          </Text>
+          <Text style={{ fontSize: 175, color: secondDiceColor }}>
+            {secondDice}
+          </Text>
         </View>
 
         <View style={styles.diceRow}>
-          <Text style={{fontSize: 175, color: thirdDiceColor}}>{thirdDice}</Text>
-          <Text style={{fontSize: 175, color: fourthDiceColor}}>{fourthDice}</Text>
+          <Text style={{ fontSize: 175, color: thirdDiceColor }}>
+            {thirdDice}
+          </Text>
+          <Text style={{ fontSize: 175, color: fourthDiceColor }}>
+            {fourthDice}
+          </Text>
         </View>
 
         <View style={styles.diceRow}>
-          <Text style={{fontSize: 175, color: fifthDiceColor}}>{fifthDice}</Text>
-          <Text style={{fontSize: 175, color: sixthDiceColor}}>{sixthDice}</Text>
+          <Text style={{ fontSize: 175, color: fifthDiceColor }}>
+            {fifthDice}
+          </Text>
+          <Text style={{ fontSize: 175, color: sixthDiceColor }}>
+            {sixthDice}
+          </Text>
         </View>
       </View>
 
@@ -68,123 +78,115 @@ export default function Index() {
           <Button disabled={isRolling} onPress={roll} title="Roll" />
         </View>
       </View>
-
     </View>
   );
 
-
   async function roll() {
-
     setIsRolling(true);
-    
-    setFirstDice(pipArray[randomNum()-1]);
-    setSecondDice(pipArray[randomNum()-1]);
-    setThirdDice(pipArray[randomNum()-1]);
-    setFourthDice(pipArray[randomNum()-1]);
-    setFifthDice(pipArray[randomNum()-1]);
-    setSixthDice(pipArray[randomNum()-1]);
 
-    await delay(100)
-    
-    setFirstDice(pipArray[randomNum()-1]);
-    setSecondDice(pipArray[randomNum()-1]);
-    setThirdDice(pipArray[randomNum()-1]);
-    setFourthDice(pipArray[randomNum()-1]);
-    setFifthDice(pipArray[randomNum()-1]);
-    setSixthDice(pipArray[randomNum()-1]);
-  
-    await delay(100)
+    setFirstDice(pipArray[randomNum() - 1]);
+    setSecondDice(pipArray[randomNum() - 1]);
+    setThirdDice(pipArray[randomNum() - 1]);
+    setFourthDice(pipArray[randomNum() - 1]);
+    setFifthDice(pipArray[randomNum() - 1]);
+    setSixthDice(pipArray[randomNum() - 1]);
 
-    setFirstDice(pipArray[randomNum()-1]);
-    setSecondDice(pipArray[randomNum()-1]);
-    setThirdDice(pipArray[randomNum()-1]);
-    setFourthDice(pipArray[randomNum()-1]);
-    setFifthDice(pipArray[randomNum()-1]);
-    setSixthDice(pipArray[randomNum()-1]);
+    await delay(100);
 
-    await delay(100)
+    setFirstDice(pipArray[randomNum() - 1]);
+    setSecondDice(pipArray[randomNum() - 1]);
+    setThirdDice(pipArray[randomNum() - 1]);
+    setFourthDice(pipArray[randomNum() - 1]);
+    setFifthDice(pipArray[randomNum() - 1]);
+    setSixthDice(pipArray[randomNum() - 1]);
 
-    setFirstDice(pipArray[randomNum()-1]);
-    setSecondDice(pipArray[randomNum()-1]);
-    setThirdDice(pipArray[randomNum()-1]);
-    setFourthDice(pipArray[randomNum()-1]);
-    setFifthDice(pipArray[randomNum()-1]);
-    setSixthDice(pipArray[randomNum()-1]);
-    
-    await delay(100)
+    await delay(100);
 
-    setFirstDice(pipArray[randomNum()-1]);
-    setSecondDice(pipArray[randomNum()-1]);
-    setThirdDice(pipArray[randomNum()-1]);
-    setFourthDice(pipArray[randomNum()-1]);
-    setFifthDice(pipArray[randomNum()-1]);
-    setSixthDice(pipArray[randomNum()-1]);
+    setFirstDice(pipArray[randomNum() - 1]);
+    setSecondDice(pipArray[randomNum() - 1]);
+    setThirdDice(pipArray[randomNum() - 1]);
+    setFourthDice(pipArray[randomNum() - 1]);
+    setFifthDice(pipArray[randomNum() - 1]);
+    setSixthDice(pipArray[randomNum() - 1]);
+
+    await delay(100);
+
+    setFirstDice(pipArray[randomNum() - 1]);
+    setSecondDice(pipArray[randomNum() - 1]);
+    setThirdDice(pipArray[randomNum() - 1]);
+    setFourthDice(pipArray[randomNum() - 1]);
+    setFifthDice(pipArray[randomNum() - 1]);
+    setSixthDice(pipArray[randomNum() - 1]);
+
+    await delay(100);
+
+    setFirstDice(pipArray[randomNum() - 1]);
+    setSecondDice(pipArray[randomNum() - 1]);
+    setThirdDice(pipArray[randomNum() - 1]);
+    setFourthDice(pipArray[randomNum() - 1]);
+    setFifthDice(pipArray[randomNum() - 1]);
+    setSixthDice(pipArray[randomNum() - 1]);
 
     setIsRolling(false);
   }
 
-  function delay(durationMS:number) {
-      return new Promise(resolve => setTimeout(resolve, durationMS))
+  function delay(durationMS: number) {
+    return new Promise((resolve) => setTimeout(resolve, durationMS));
   }
   function add() {
-    if (diceCount == 0) {
+    if (diceCount === 0) {
       setFirstDiceColor("black");
       diceCount++;
-    } else if (diceCount == 1) {
+    } else if (diceCount === 1) {
       setSecondDiceColor("black");
       diceCount++;
-    } else if (diceCount == 2) {
+    } else if (diceCount === 2) {
       setThirdDiceColor("black");
       diceCount++;
-    } else if (diceCount == 3) {
+    } else if (diceCount === 3) {
       setFourthDiceColor("black");
       diceCount++;
-    } else if (diceCount == 4) {
+    } else if (diceCount === 4) {
       setFifthDiceColor("black");
       diceCount++;
-    } else if (diceCount == 5) {
+    } else if (diceCount === 5) {
       setSixthDiceColor("black");
       diceCount++;
     }
   }
-  
+
   function subtract() {
-    if (diceCount == 6) {
+    if (diceCount === 6) {
       setSixthDiceColor("white");
       diceCount--;
-    } else if (diceCount == 5) {
+    } else if (diceCount === 5) {
       setFifthDiceColor("white");
       diceCount--;
-    } else if (diceCount == 4) {
+    } else if (diceCount === 4) {
       setFourthDiceColor("white");
       diceCount--;
-    } else if (diceCount == 3) {
+    } else if (diceCount === 3) {
       setThirdDiceColor("white");
       diceCount--;
-    } else if (diceCount == 2) {
+    } else if (diceCount === 2) {
       setSecondDiceColor("white");
       diceCount--;
-    } else if (diceCount == 1) {
+    } else if (diceCount === 1) {
       setFirstDiceColor("white");
       diceCount--;
     }
   }
 }
 
-
-function test() {
-  alert("test")
-}
-
 const styles = StyleSheet.create({
   main: {
     flex: 1,
     justifyContent: "center",
-    height: "100%"
+    height: "100%",
   },
   diceRow: {
     flex: 1,
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
     flexDirection: "row",
     backgroundColor: "white",
     justifyContent: "center",
@@ -196,19 +198,19 @@ const styles = StyleSheet.create({
   topBar: {
     height: "10%",
     flex: 1,
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-between",
     paddingLeft: 10,
     paddingRight: 10,
-    paddingTop: 50,
-    backgroundColor: "white"
+    paddingTop: 10,
+    backgroundColor: "white",
   },
   bottomBar: {
     height: "10%",
     justifyContent: "center",
     backgroundColor: "white",
-    flex: 1
+    flex: 1,
   },
   rollButton: {
     justifyContent: "center",
@@ -216,16 +218,12 @@ const styles = StyleSheet.create({
     paddingLeft: "35%",
     paddingRight: "35%",
   },
-  subtractButton: {
-    
-  },
-  addButton: {
-    
-  },
+  subtractButton: {},
+  addButton: {},
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   text: {
     fontSize: 24,
