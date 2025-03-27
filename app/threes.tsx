@@ -406,10 +406,6 @@ export default function ThreesGame() {
   }
 }
 
-function test() {
-  alert("test");
-}
-
 const styles = StyleSheet.create({
   main: {
     flex: 1,

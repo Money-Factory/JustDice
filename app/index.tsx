@@ -178,10 +178,6 @@ export default function Index() {
   }
 }
 
-function test() {
-  alert("test");
-}
-
 const styles = StyleSheet.create({
   main: {
     flex: 1,

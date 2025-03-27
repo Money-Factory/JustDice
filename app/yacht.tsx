@@ -239,10 +239,6 @@ export default function Yacht() {
   }
 }
 
-function test() {
-  alert("test");
-}
-
 const styles = StyleSheet.create({
   main: {
     flex: 1,
