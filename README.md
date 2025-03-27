@@ -7,8 +7,9 @@ This project uses [Expo](https://expo.dev) and was created with created with [`c
 1. Install dependencies
 
    ```bash
-   npm install
+   yarn
    ```
+  - You can install yarn with `npm install -g corepack`
 
 2. Start the app
 
