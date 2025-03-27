@@ -9,6 +9,13 @@ let JACK = "\u004A";
 let TEN = "\u0031\u0030";
 let NINE = "\u0039";
 
+let aceVal = 14;
+let kingVal = 13;
+let queenVal = 12;
+let jackVal = 11;
+let tenVal = 10;
+let nineVal = 9;
+
 let pipArray = [ACE, KING, QUEEN, JACK, TEN, NINE];
 const randomNum = (min = 1, max = 6) => Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -21,50 +28,50 @@ const ONE_PAIR = [];
 
 export default function PokerDice() {
 
-    const [firstDice, setFirstDice] = React.useState(ACE);
-    const [secondDice, setSecondDice] = React.useState(ACE);
-    const [thirdDice, setThirdDice] = React.useState(ACE);
-    const [fourthDice, setFourthDice] = React.useState(ACE);
-    const [fifthDice, setFifthDice] = React.useState(ACE);
+    const [firstCard, setFirstCard] = React.useState(ACE);
+    const [secondCard, setSecondCard] = React.useState(ACE);
+    const [thirdCard, setThirdCard] = React.useState(ACE);
+    const [fourthCard, setFourthCard] = React.useState(ACE);
+    const [fifthCard, setFifthCard] = React.useState(ACE);
 
     const [isRolling, setIsRolling] = React.useState(false);
 
-    const [firstDiceColor, setFirstDiceColor] = React.useState("black");
-    const [secondDiceColor, setSecondDiceColor] = React.useState("black");
-    const [thirdDiceColor, setThirdDiceColor] = React.useState("black");
-    const [fourthDiceColor, setFourthDiceColor] = React.useState("black");
-    const [fifthDiceColor, setFifthDiceColor] = React.useState("black");
+    const [firstCardColor, setFirstCardColor] = React.useState("black");
+    const [secondCardColor, setSecondCardColor] = React.useState("black");
+    const [thirdCardColor, setThirdCardColor] = React.useState("black");
+    const [fourthCardColor, setFourthCardColor] = React.useState("black");
+    const [fifthCardColor, setFifthCardColor] = React.useState("black");
 
     async function swapColor(diceNum: number) {
         if (diceNum == 1) {
-            if (firstDiceColor == "black") {
-                setFirstDiceColor("red");
+            if (firstCardColor == "black") {
+                setFirstCardColor("red");
             } else {
-                setFirstDiceColor("black");
+                setFirstCardColor("black");
             }
         } else if (diceNum == 2) {
-            if (secondDiceColor == "black") {
-                setSecondDiceColor("red");
+            if (secondCardColor == "black") {
+                setSecondCardColor("red");
             } else {
-                setSecondDiceColor("black");
+                setSecondCardColor("black");
             }
         } else if (diceNum == 3) {
-            if (thirdDiceColor == "black") {
-                setThirdDiceColor("red");
+            if (thirdCardColor == "black") {
+                setThirdCardColor("red");
             } else {
-                setThirdDiceColor("black");
+                setThirdCardColor("black");
             }
         } else if (diceNum == 4) {
-            if (fourthDiceColor == "black") {
-                setFourthDiceColor("red");
+            if (fourthCardColor == "black") {
+                setFourthCardColor("red");
             } else {
-                setFourthDiceColor("black");
+                setFourthCardColor("black");
             }
         } else if (diceNum == 5) {
-            if (fifthDiceColor == "black") {
-                setFifthDiceColor("red");
+            if (fifthCardColor == "black") {
+                setFifthCardColor("red");
             } else {
-                setFifthDiceColor("black");
+                setFifthCardColor("black");
             }
         }
     }
@@ -77,43 +84,43 @@ export default function PokerDice() {
 
         setIsRolling(true);
 
-        firstDiceColor == "black" ? setFirstDice(pipArray[randomNum() - 1]) : null;
-        secondDiceColor == "black" ? setSecondDice(pipArray[randomNum() - 1]) : null;
-        thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-        fourthDiceColor == "black" ? setFourthDice(pipArray[randomNum() - 1]) : null;
-        fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
+        firstCardColor == "black" ? setFirstCard(pipArray[randomNum() - 1]) : null;
+        secondCardColor == "black" ? setSecondCard(pipArray[randomNum() - 1]) : null;
+        thirdCardColor == "black" ? setThirdCard(pipArray[randomNum() - 1]) : null;
+        fourthCardColor == "black" ? setFourthCard(pipArray[randomNum() - 1]) : null;
+        fifthCardColor == "black" ? setFifthCard(pipArray[randomNum() - 1]) : null;
 
         await delay(100)
 
-        firstDiceColor == "black" ? setFirstDice(pipArray[randomNum() - 1]) : null;
-        secondDiceColor == "black" ? setSecondDice(pipArray[randomNum() - 1]) : null;
-        thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-        fourthDiceColor == "black" ? setFourthDice(pipArray[randomNum() - 1]) : null;
-        fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
+        firstCardColor == "black" ? setFirstCard(pipArray[randomNum() - 1]) : null;
+        secondCardColor == "black" ? setSecondCard(pipArray[randomNum() - 1]) : null;
+        thirdCardColor == "black" ? setThirdCard(pipArray[randomNum() - 1]) : null;
+        fourthCardColor == "black" ? setFourthCard(pipArray[randomNum() - 1]) : null;
+        fifthCardColor == "black" ? setFifthCard(pipArray[randomNum() - 1]) : null;
 
         await delay(100)
 
-        firstDiceColor == "black" ? setFirstDice(pipArray[randomNum() - 1]) : null;
-        secondDiceColor == "black" ? setSecondDice(pipArray[randomNum() - 1]) : null;
-        thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-        fourthDiceColor == "black" ? setFourthDice(pipArray[randomNum() - 1]) : null;
-        fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
+        firstCardColor == "black" ? setFirstCard(pipArray[randomNum() - 1]) : null;
+        secondCardColor == "black" ? setSecondCard(pipArray[randomNum() - 1]) : null;
+        thirdCardColor == "black" ? setThirdCard(pipArray[randomNum() - 1]) : null;
+        fourthCardColor == "black" ? setFourthCard(pipArray[randomNum() - 1]) : null;
+        fifthCardColor == "black" ? setFifthCard(pipArray[randomNum() - 1]) : null;
 
         await delay(100)
 
-        firstDiceColor == "black" ? setFirstDice(pipArray[randomNum() - 1]) : null;
-        secondDiceColor == "black" ? setSecondDice(pipArray[randomNum() - 1]) : null;
-        thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-        fourthDiceColor == "black" ? setFourthDice(pipArray[randomNum() - 1]) : null;
-        fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
+        firstCardColor == "black" ? setFirstCard(pipArray[randomNum() - 1]) : null;
+        secondCardColor == "black" ? setSecondCard(pipArray[randomNum() - 1]) : null;
+        thirdCardColor == "black" ? setThirdCard(pipArray[randomNum() - 1]) : null;
+        fourthCardColor == "black" ? setFourthCard(pipArray[randomNum() - 1]) : null;
+        fifthCardColor == "black" ? setFifthCard(pipArray[randomNum() - 1]) : null;
 
         await delay(100)
 
-        firstDiceColor == "black" ? setFirstDice(pipArray[randomNum() - 1]) : null;
-        secondDiceColor == "black" ? setSecondDice(pipArray[randomNum() - 1]) : null;
-        thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-        fourthDiceColor == "black" ? setFourthDice(pipArray[randomNum() - 1]) : null;
-        fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
+        firstCardColor == "black" ? setFirstCard(pipArray[randomNum() - 1]) : null;
+        secondCardColor == "black" ? setSecondCard(pipArray[randomNum() - 1]) : null;
+        thirdCardColor == "black" ? setThirdCard(pipArray[randomNum() - 1]) : null;
+        fourthCardColor == "black" ? setFourthCard(pipArray[randomNum() - 1]) : null;
+        fifthCardColor == "black" ? setFifthCard(pipArray[randomNum() - 1]) : null;
 
         setIsRolling(false);
     }
@@ -129,27 +136,29 @@ export default function PokerDice() {
                 <View style={styles.diceRow}>
                     <View style={styles.diceContainer}>
                         <Pressable onPressIn={() => swapColor(1)}>
-                            <Text style={{ fontSize: 75, color: firstDiceColor }}>{firstDice}</Text>
+                            <Text style={{ fontSize: 75, color: firstCardColor }}>{firstCard}</Text>
                         </Pressable>
                     </View>
                     <View style={styles.diceContainer}>
                         <Pressable onPressIn={() => swapColor(2)}>
-                            <Text style={{ fontSize: 75, color: secondDiceColor }}>{secondDice}</Text>
+                            <Text style={{ fontSize: 75, color: secondCardColor }}>{secondCard}</Text>
                         </Pressable>
                     </View>
                     <View style={styles.diceContainer}>
                         <Pressable onPressIn={() => swapColor(3)}>
-                            <Text style={{ fontSize: 75, color: thirdDiceColor }}>{thirdDice}</Text>
+                            <Text style={{ fontSize: 75, color: thirdCardColor }}>{thirdCard}</Text>
                         </Pressable>
                     </View>
+                </View>
+                <View style={styles.diceRow}>
                     <View style={styles.diceContainer}>
                         <Pressable onPressIn={() => swapColor(4)}>
-                            <Text style={{ fontSize: 75, color: fourthDiceColor }}>{fourthDice}</Text>
+                            <Text style={{ fontSize: 75, color: fourthCardColor }}>{fourthCard}</Text>
                         </Pressable>
                     </View>
                     <View style={styles.diceContainer}>
                         <Pressable onPressIn={() => swapColor(5)}>
-                            <Text style={{ fontSize: 75, color: fifthDiceColor }}>{fifthDice}</Text>
+                            <Text style={{ fontSize: 75, color: fifthCardColor }}>{fifthCard}</Text>
                         </Pressable>
                     </View>
                 </View>
