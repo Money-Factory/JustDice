@@ -10,9 +10,6 @@ const FIVE = "\u2684";
 const SIX = "\u2685";
 const POSSIBLE_VALUES = [ONE, TWO, THREE, FOUR, FIVE, SIX];
 
-const randomNum = (min = 1, max = 6) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
-
 const MAX_DIE_COUNT = 6;
 const MIN_DIE_COUNT = 0;
 
@@ -36,6 +33,8 @@ export default function Index() {
 
     setIsRolling(false);
   };
+
+  const randomNum = (): number => Math.floor(Math.random() * 6) + 1;
 
   const delay = (durationMS: number) =>
     new Promise((resolve) => setTimeout(resolve, durationMS));
