@@ -1,6 +1,7 @@
 import { Text, View, StyleSheet, Button, Pressable } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import ShakeSensor from "../ShakeSensor";
+import { finishScreenTransition } from "react-native-reanimated";
 
 let ACE = "\u0041";
 let KING = "\u004B";
@@ -16,15 +17,61 @@ let jackVal = 11;
 let tenVal = 10;
 let nineVal = 9;
 
+let cardsToValsMap: { [key: string]: number } = {};
+
+// Setting values
+cardsToValsMap[ACE] = aceVal;
+cardsToValsMap[KING] = kingVal;
+cardsToValsMap[QUEEN] = queenVal;
+cardsToValsMap[JACK] = jackVal;
+cardsToValsMap[TEN] = tenVal;
+cardsToValsMap[NINE] = nineVal;
+
+// 9, A, K, A, J
+// 
+// Sort
+// 9, J, K, A, A
+//
+// BEGIN
+// Index i = 0
+// Value of i = NINE
+// Index j = i + 1 
+// Index j = 1
+// Value of j = JACK
+//   Ask, are I and J values equal? (NINE and JACK)
+//     No.
+// Increment J
+// Index j = 2
+// Value of J = KING
+//   Ask, are I and J values euqual? (NINE and KING)
+//     No.
+// Increment J
+// Index j = 3
+// Value of J = ACE
+//   Ask, are I and J values euqual? (NINE and ACE)
+//     No.
+// Increment J
+// Index j = 4
+// Value of J = ACE
+//   Ask, are I and J values euqual? (NINE and ACE)
+//     No.
+// 
+// Break inner loop
+// Increment I
+// Index i = 1
+// Value of i = JACK
+
 let pipArray = [ACE, KING, QUEEN, JACK, TEN, NINE];
 const randomNum = (min = 1, max = 6) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-const STRAIGHT = [];
-const FOUR_OF_A_KIND = [];
-const FULL_HOUSE = []
-const THREE_OF_A_KIND = [];
-const TWO_PAIR = [];
-const ONE_PAIR = [];
+const FIVE_OF_A_KIND = "Five of a Kind";
+const FOUR_OF_A_KIND = "Four of a Kind";
+const FULL_HOUSE = "Full House";
+const STRAIGHT = "Straight";
+const THREE_OF_A_KIND = "Three of a Kind";
+const TWO_PAIR = "Two Pair";
+const ONE_PAIR = "One Pair";
+const HIGH_CARD = "High Card (you suck lol)";
 
 export default function PokerDice() {
 
@@ -35,6 +82,9 @@ export default function PokerDice() {
     const [fifthCard, setFifthCard] = React.useState(ACE);
 
     const [isRolling, setIsRolling] = React.useState(false);
+
+    const [handLabel, setHandLabel] = React.useState("NONE")
+    const [handRank, setHandRank] = React.useState("NONE")
 
     const [firstCardColor, setFirstCardColor] = React.useState("black");
     const [secondCardColor, setSecondCardColor] = React.useState("black");
@@ -80,8 +130,190 @@ export default function PokerDice() {
         return new Promise(resolve => setTimeout(resolve, durationMS))
     }
 
-    async function roll() {
+    function updateHandRank(values: string[]) {
+        var numericValues = getSortedNumericCardValues(values)
 
+        if (checkForFiveOfAKind(numericValues)) {
+            setHandRank(FIVE_OF_A_KIND)
+        } else if (checkForFourOfAKind(numericValues)) {
+            setHandRank(FOUR_OF_A_KIND)
+        } else if (checkForFullHouse(numericValues)) {
+            setHandRank(FULL_HOUSE)
+        } else if (checkForStraight(numericValues)) {
+            setHandRank(STRAIGHT)
+        } else if (checkForThreeOfAKind(numericValues)) {
+            setHandRank(THREE_OF_A_KIND)
+        } else if (checkForTwoPair(numericValues)) {
+            setHandRank(TWO_PAIR)
+        } else if (checkForOnePair(numericValues)) {
+            setHandRank(ONE_PAIR)
+        } else {
+            setHandRank(HIGH_CARD)
+        }
+        // var currHandRank = HIGH_CARD
+        // for (let i = 0; i < numericValues.length; i++) {
+        //     const iValue = numericValues[i];
+
+        //     for (let j = i + 1; j < numericValues.length; j++) {
+        //         const jValue = numericValues[j]
+        //         console.log("Comparing [" + i + "]:" + iValue + " and [" + j +"]:" + jValue)
+
+        //         if (iValue == jValue) {
+        //             if (handRank == HIGH_CARD) {
+        //                 console.log("High card > One Pair")
+        //                 currHandRank = ONE_PAIR
+        //             } else if (handRank == ONE_PAIR) {
+        //                 console.log("One pair > Set")
+        //                 currHandRank = THREE_OF_A_KIND
+        //             } else if (handRank == THREE_OF_A_KIND) {
+        //                 console.log("Set > Quads")
+        //                 currHandRank = FOUR_OF_A_KIND
+        //             } else if (handRank == FOUR_OF_A_KIND) {
+        //                 console.log("Quads > FOAK")
+        //                 currHandRank = FIVE_OF_A_KIND
+        //             }
+        //         }
+        //     }
+        // }
+        // setHandRank(currHandRank)
+    }
+
+    function checkForFiveOfAKind(values: number[]) {
+        const firstCard = values[0]
+        const secondCard = values[1]
+        const thirdCard = values[2]
+        const fourthCard = values[3]
+        const fifthCard = values[4]
+
+        if (firstCard == secondCard &&
+            firstCard == thirdCard &&
+            firstCard == fourthCard &&
+            firstCard == fifthCard
+        ) {
+            return true
+        }
+
+        return false;
+    }
+
+    function checkForFourOfAKind(values: number[]) {
+        const firstCard = values[0]
+        const secondCard = values[1]
+        const thirdCard = values[2]
+        const fourthCard = values[3]
+        const fifthCard = values[4]
+
+        if (firstCard == secondCard) {
+            if (firstCard == thirdCard && firstCard == fourthCard) {
+                return true
+            }
+        } else if (secondCard == thirdCard && secondCard == fourthCard && secondCard == fifthCard) {
+            return true
+        }
+        return false
+    }
+
+    function checkForFullHouse(values: number[]) {
+        const firstCard = values[0]
+        const secondCard = values[1]
+        const thirdCard = values[2]
+        const fourthCard = values[3]
+        const fifthCard = values[4]
+
+        if (firstCard == secondCard && thirdCard == fourthCard && thirdCard == fifthCard) {
+            return true
+        } else if (firstCard == secondCard && firstCard == thirdCard && fourthCard == fifthCard) {
+            return true
+        }
+
+        return false
+    }
+
+    function checkForStraight(values: number[]) {
+        const firstCard = values[0]
+        const secondCard = values[1]
+        const thirdCard = values[2]
+        const fourthCard = values[3]
+        const fifthCard = values[4]
+
+        if (firstCard == nineVal && secondCard == tenVal && thirdCard == jackVal && fourthCard == queenVal && fifthCard == kingVal) {
+            return true
+        } else if (firstCard == tenVal && secondCard == jackVal && thirdCard == queenVal && fourthCard == kingVal && fifthCard == aceVal) {
+            return true
+        }
+
+        return false
+    }
+
+    function checkForThreeOfAKind(values: number[]) {
+        const firstCard = values[0]
+        const secondCard = values[1]
+        const thirdCard = values[2]
+        const fourthCard = values[3]
+        const fifthCard = values[4]
+
+        // Logic 
+
+        if (firstCard == secondCard && firstCard == thirdCard && firstCard != fourthCard && firstCard != fifthCard) {
+            return true
+        } else if (secondCard == thirdCard && secondCard == fourthCard && secondCard != fifthCard) {
+            return true
+        } else if (thirdCard == fourthCard && thirdCard == fifthCard) {
+            return true
+        }
+
+        return false
+    }
+
+    function checkForTwoPair(values: number[]) {
+        const firstCard = values[0]
+        const secondCard = values[1]
+        const thirdCard = values[2]
+        const fourthCard = values[3]
+        const fifthCard = values[4]
+
+        if (firstCard == secondCard && thirdCard == fourthCard) {
+            return true
+        } else if (secondCard == thirdCard && fourthCard == fifthCard) {
+            return true
+        }
+        return false
+    }
+
+    function checkForOnePair(values: number[]) {
+        const firstCard = values[0]
+        const secondCard = values[1]
+        const thirdCard = values[2]
+        const fourthCard = values[3]
+        const fifthCard = values[4]
+
+        if (firstCard == secondCard && firstCard != thirdCard && firstCard != fourthCard && firstCard != fifthCard) {
+            return true
+        } else if (secondCard == thirdCard && secondCard != fourthCard && secondCard != fifthCard) {
+            return true
+        } else if (thirdCard == fourthCard && thirdCard != fifthCard) {
+            return true
+        } else if (fourthCard == fifthCard) {
+            return true
+        }
+
+        return false
+    }
+
+    function getSortedNumericCardValues(values: string[]) {
+        let result: number[] = []
+        for (let index = 0; index < values.length; index++) {
+            const element = values[index];
+            let val = cardsToValsMap[element]
+            result.push(val)
+        }
+
+        result.sort((a,b) => a - b)
+
+        return result
+    }
+
+    async function roll() {
         setIsRolling(true);
 
         firstCardColor == "black" ? setFirstCard(pipArray[randomNum() - 1]) : null;
@@ -125,10 +357,26 @@ export default function PokerDice() {
         setIsRolling(false);
     }
 
+    useEffect(() => {
+        if (!isRolling) {
+            console.log("Stopped rolling - updating hand")
+            let values = [firstCard, secondCard, thirdCard, fourthCard, fifthCard]
+            updateHandRank(values)
+        }
+    }, [isRolling])
+
+    useEffect(() => {
+        setHandLabel(handRank)
+    }, [handRank])
+
     return (
         <View style={styles.main}>
         
-            <View style={styles.topBar} />
+                  <View style={styles.topBar}>
+                    <View style={styles.subtractButton}>
+                        <Text>Current Hand Ranking: {handLabel}</Text>
+                    </View>
+                  </View>
 
             <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
 
@@ -207,7 +455,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexWrap: 'wrap',
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "center",
         paddingLeft: 10,
         paddingRight: 10,
         paddingTop: 50,
