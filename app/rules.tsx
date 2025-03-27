@@ -14,7 +14,7 @@ If the current player challenges the previous bid, all dice are revealed. If the
 were bid), the bidder wins. Otherwise, the challenger wins. The player who loses a round loses one of their dice. The last player to still retain a die \
 (or dice) is the winner. The winner of the last round starts the bidding on the next round.';
 
-export default function Yacht() {
+export default function Rules() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
