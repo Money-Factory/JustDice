@@ -92,32 +92,32 @@ export default function PokerDice() {
     const [fifthCardColor, setFifthCardColor] = React.useState("black");
 
     async function swapColor(diceNum: number) {
-        if (diceNum == 1) {
-            if (firstCardColor == "black") {
+        if (diceNum === 1) {
+            if (firstCardColor === "black") {
                 setFirstCardColor("red");
             } else {
                 setFirstCardColor("black");
             }
-        } else if (diceNum == 2) {
-            if (secondCardColor == "black") {
+        } else if (diceNum === 2) {
+            if (secondCardColor === "black") {
                 setSecondCardColor("red");
             } else {
                 setSecondCardColor("black");
             }
-        } else if (diceNum == 3) {
-            if (thirdCardColor == "black") {
+        } else if (diceNum === 3) {
+            if (thirdCardColor === "black") {
                 setThirdCardColor("red");
             } else {
                 setThirdCardColor("black");
             }
-        } else if (diceNum == 4) {
-            if (fourthCardColor == "black") {
+        } else if (diceNum === 4) {
+            if (fourthCardColor === "black") {
                 setFourthCardColor("red");
             } else {
                 setFourthCardColor("black");
             }
-        } else if (diceNum == 5) {
-            if (fifthCardColor == "black") {
+        } else if (diceNum === 5) {
+            if (fifthCardColor === "black") {
                 setFifthCardColor("red");
             } else {
                 setFifthCardColor("black");
@@ -157,17 +157,17 @@ export default function PokerDice() {
         //         const jValue = numericValues[j]
         //         console.log("Comparing [" + i + "]:" + iValue + " and [" + j +"]:" + jValue)
 
-        //         if (iValue == jValue) {
-        //             if (handRank == HIGH_CARD) {
+        //         if (iValue === jValue) {
+        //             if (handRank === HIGH_CARD) {
         //                 console.log("High card > One Pair")
         //                 currHandRank = ONE_PAIR
-        //             } else if (handRank == ONE_PAIR) {
+        //             } else if (handRank === ONE_PAIR) {
         //                 console.log("One pair > Set")
         //                 currHandRank = THREE_OF_A_KIND
-        //             } else if (handRank == THREE_OF_A_KIND) {
+        //             } else if (handRank === THREE_OF_A_KIND) {
         //                 console.log("Set > Quads")
         //                 currHandRank = FOUR_OF_A_KIND
-        //             } else if (handRank == FOUR_OF_A_KIND) {
+        //             } else if (handRank === FOUR_OF_A_KIND) {
         //                 console.log("Quads > FOAK")
         //                 currHandRank = FIVE_OF_A_KIND
         //             }
@@ -184,10 +184,10 @@ export default function PokerDice() {
         const fourthCard = values[3]
         const fifthCard = values[4]
 
-        if (firstCard == secondCard &&
-            firstCard == thirdCard &&
-            firstCard == fourthCard &&
-            firstCard == fifthCard
+        if (firstCard === secondCard &&
+            firstCard === thirdCard &&
+            firstCard === fourthCard &&
+            firstCard === fifthCard
         ) {
             return true
         }
@@ -202,11 +202,11 @@ export default function PokerDice() {
         const fourthCard = values[3]
         const fifthCard = values[4]
 
-        if (firstCard == secondCard) {
-            if (firstCard == thirdCard && firstCard == fourthCard) {
+        if (firstCard === secondCard) {
+            if (firstCard === thirdCard && firstCard === fourthCard) {
                 return true
             }
-        } else if (secondCard == thirdCard && secondCard == fourthCard && secondCard == fifthCard) {
+        } else if (secondCard === thirdCard && secondCard === fourthCard && secondCard === fifthCard) {
             return true
         }
         return false
@@ -219,9 +219,9 @@ export default function PokerDice() {
         const fourthCard = values[3]
         const fifthCard = values[4]
 
-        if (firstCard == secondCard && thirdCard == fourthCard && thirdCard == fifthCard) {
+        if (firstCard === secondCard && thirdCard === fourthCard && thirdCard === fifthCard) {
             return true
-        } else if (firstCard == secondCard && firstCard == thirdCard && fourthCard == fifthCard) {
+        } else if (firstCard === secondCard && firstCard === thirdCard && fourthCard === fifthCard) {
             return true
         }
 
@@ -235,9 +235,9 @@ export default function PokerDice() {
         const fourthCard = values[3]
         const fifthCard = values[4]
 
-        if (firstCard == nineVal && secondCard == tenVal && thirdCard == jackVal && fourthCard == queenVal && fifthCard == kingVal) {
+        if (firstCard === nineVal && secondCard === tenVal && thirdCard === jackVal && fourthCard === queenVal && fifthCard === kingVal) {
             return true
-        } else if (firstCard == tenVal && secondCard == jackVal && thirdCard == queenVal && fourthCard == kingVal && fifthCard == aceVal) {
+        } else if (firstCard === tenVal && secondCard === jackVal && thirdCard === queenVal && fourthCard === kingVal && fifthCard === aceVal) {
             return true
         }
 
@@ -253,11 +253,11 @@ export default function PokerDice() {
 
         // Logic 
 
-        if (firstCard == secondCard && firstCard == thirdCard && firstCard != fourthCard && firstCard != fifthCard) {
+        if (firstCard === secondCard && firstCard === thirdCard && firstCard !== fourthCard && firstCard !== fifthCard) {
             return true
-        } else if (secondCard == thirdCard && secondCard == fourthCard && secondCard != fifthCard) {
+        } else if (secondCard === thirdCard && secondCard === fourthCard && secondCard !== fifthCard) {
             return true
-        } else if (thirdCard == fourthCard && thirdCard == fifthCard) {
+        } else if (thirdCard === fourthCard && thirdCard === fifthCard) {
             return true
         }
 
@@ -271,9 +271,9 @@ export default function PokerDice() {
         const fourthCard = values[3]
         const fifthCard = values[4]
 
-        if (firstCard == secondCard && thirdCard == fourthCard) {
+        if (firstCard === secondCard && thirdCard === fourthCard) {
             return true
-        } else if (secondCard == thirdCard && fourthCard == fifthCard) {
+        } else if (secondCard === thirdCard && fourthCard === fifthCard) {
             return true
         }
         return false
@@ -286,13 +286,13 @@ export default function PokerDice() {
         const fourthCard = values[3]
         const fifthCard = values[4]
 
-        if (firstCard == secondCard && firstCard != thirdCard && firstCard != fourthCard && firstCard != fifthCard) {
+        if (firstCard === secondCard && firstCard !== thirdCard && firstCard !== fourthCard && firstCard !== fifthCard) {
             return true
-        } else if (secondCard == thirdCard && secondCard != fourthCard && secondCard != fifthCard) {
+        } else if (secondCard === thirdCard && secondCard !== fourthCard && secondCard !== fifthCard) {
             return true
-        } else if (thirdCard == fourthCard && thirdCard != fifthCard) {
+        } else if (thirdCard === fourthCard && thirdCard !== fifthCard) {
             return true
-        } else if (fourthCard == fifthCard) {
+        } else if (fourthCard === fifthCard) {
             return true
         }
 
@@ -315,43 +315,43 @@ export default function PokerDice() {
     async function roll() {
         setIsRolling(true);
 
-        firstCardColor == "black" ? setFirstCard(pipArray[randomNum() - 1]) : null;
-        secondCardColor == "black" ? setSecondCard(pipArray[randomNum() - 1]) : null;
-        thirdCardColor == "black" ? setThirdCard(pipArray[randomNum() - 1]) : null;
-        fourthCardColor == "black" ? setFourthCard(pipArray[randomNum() - 1]) : null;
-        fifthCardColor == "black" ? setFifthCard(pipArray[randomNum() - 1]) : null;
+        firstCardColor === "black" && setFirstCard(pipArray[randomNum() - 1]);
+        secondCardColor === "black" && setSecondCard(pipArray[randomNum() - 1]);
+        thirdCardColor === "black" && setThirdCard(pipArray[randomNum() - 1]);
+        fourthCardColor === "black" && setFourthCard(pipArray[randomNum() - 1]);
+        fifthCardColor === "black" && setFifthCard(pipArray[randomNum() - 1]);
 
         await delay(100)
 
-        firstCardColor == "black" ? setFirstCard(pipArray[randomNum() - 1]) : null;
-        secondCardColor == "black" ? setSecondCard(pipArray[randomNum() - 1]) : null;
-        thirdCardColor == "black" ? setThirdCard(pipArray[randomNum() - 1]) : null;
-        fourthCardColor == "black" ? setFourthCard(pipArray[randomNum() - 1]) : null;
-        fifthCardColor == "black" ? setFifthCard(pipArray[randomNum() - 1]) : null;
+        firstCardColor === "black" && setFirstCard(pipArray[randomNum() - 1]);
+        secondCardColor === "black" && setSecondCard(pipArray[randomNum() - 1]);
+        thirdCardColor === "black" && setThirdCard(pipArray[randomNum() - 1]);
+        fourthCardColor === "black" && setFourthCard(pipArray[randomNum() - 1]);
+        fifthCardColor === "black" && setFifthCard(pipArray[randomNum() - 1]);
 
         await delay(100)
 
-        firstCardColor == "black" ? setFirstCard(pipArray[randomNum() - 1]) : null;
-        secondCardColor == "black" ? setSecondCard(pipArray[randomNum() - 1]) : null;
-        thirdCardColor == "black" ? setThirdCard(pipArray[randomNum() - 1]) : null;
-        fourthCardColor == "black" ? setFourthCard(pipArray[randomNum() - 1]) : null;
-        fifthCardColor == "black" ? setFifthCard(pipArray[randomNum() - 1]) : null;
+        firstCardColor === "black" && setFirstCard(pipArray[randomNum() - 1]);
+        secondCardColor === "black" && setSecondCard(pipArray[randomNum() - 1]);
+        thirdCardColor === "black" && setThirdCard(pipArray[randomNum() - 1]);
+        fourthCardColor === "black" && setFourthCard(pipArray[randomNum() - 1]);
+        fifthCardColor === "black" && setFifthCard(pipArray[randomNum() - 1]);
 
         await delay(100)
 
-        firstCardColor == "black" ? setFirstCard(pipArray[randomNum() - 1]) : null;
-        secondCardColor == "black" ? setSecondCard(pipArray[randomNum() - 1]) : null;
-        thirdCardColor == "black" ? setThirdCard(pipArray[randomNum() - 1]) : null;
-        fourthCardColor == "black" ? setFourthCard(pipArray[randomNum() - 1]) : null;
-        fifthCardColor == "black" ? setFifthCard(pipArray[randomNum() - 1]) : null;
+        firstCardColor === "black" && setFirstCard(pipArray[randomNum() - 1]);
+        secondCardColor === "black" && setSecondCard(pipArray[randomNum() - 1]);
+        thirdCardColor === "black" && setThirdCard(pipArray[randomNum() - 1]);
+        fourthCardColor === "black" && setFourthCard(pipArray[randomNum() - 1]);
+        fifthCardColor === "black" && setFifthCard(pipArray[randomNum() - 1]);
 
         await delay(100)
 
-        firstCardColor == "black" ? setFirstCard(pipArray[randomNum() - 1]) : null;
-        secondCardColor == "black" ? setSecondCard(pipArray[randomNum() - 1]) : null;
-        thirdCardColor == "black" ? setThirdCard(pipArray[randomNum() - 1]) : null;
-        fourthCardColor == "black" ? setFourthCard(pipArray[randomNum() - 1]) : null;
-        fifthCardColor == "black" ? setFifthCard(pipArray[randomNum() - 1]) : null;
+        firstCardColor === "black" && setFirstCard(pipArray[randomNum() - 1]);
+        secondCardColor === "black" && setSecondCard(pipArray[randomNum() - 1]);
+        thirdCardColor === "black" && setThirdCard(pipArray[randomNum() - 1]);
+        fourthCardColor === "black" && setFourthCard(pipArray[randomNum() - 1]);
+        fifthCardColor === "black" && setFifthCard(pipArray[randomNum() - 1]);
 
         setIsRolling(false);
     }
