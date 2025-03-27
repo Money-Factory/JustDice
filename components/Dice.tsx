@@ -1,5 +1,5 @@
-import type { PropsWithChildren } from "react";
-import { Text, StyleSheet } from "react-native";
+import React from "react";
+import { Text, StyleSheet, Pressable } from "react-native";
 
 export enum DiceValue {
   ONE = "\u2680",
@@ -10,19 +10,36 @@ export enum DiceValue {
   SIX = "\u2685",
 }
 
-type Props = PropsWithChildren<{
+interface DiceProps {
   value: DiceValue;
-}>;
+  onSelect?: () => void;
+}
 
-export default function Dice({ value }: Props) {
-  return <Text style={styles.diceItem}>{value}</Text>;
+export default function Dice({ value, onSelect }: DiceProps) {
+  const [selected, setSelected] = React.useState(false);
+  return (
+    <Pressable
+      style={styles.wrapper}
+      onPressIn={() => {
+        if (onSelect) {
+          setSelected(!selected);
+          onSelect();
+        }
+      }}
+    >
+      <Text style={{ ...styles.dice, color: selected ? "red" : "black" }}>
+        {value}
+      </Text>
+    </Pressable>
+  );
 }
 
 const styles = StyleSheet.create({
-  diceItem: {
-    width: "45%",
-    margin: "2.5%",
+  dice: {
+    fontSize: 125,
     textAlign: "center",
-    fontSize: 175,
+  },
+  wrapper: {
+    width: "45%",
   },
 });
