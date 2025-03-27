@@ -1,12 +1,5 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-  Button,
-  TouchableOpacity,
-  Pressable,
-} from "react-native";
-import React, { useState } from "react";
+import { Text, View, StyleSheet, Button, Pressable } from "react-native";
+import React from "react";
 import ShakeSensor from "../components/ShakeSensor";
 
 let one = "\u2680";
@@ -19,10 +12,8 @@ let pipArray = [one, two, three, four, five, six];
 
 const randomNum = (min = 1, max = 6) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
-let diceCount = 6;
 
 export default function Yacht() {
-  const [firstDice, setFirstDice] = React.useState(one);
   const [secondDice, setSecondDice] = React.useState(two);
   const [thirdDice, setThirdDice] = React.useState(three);
   const [fourthDice, setFourthDice] = React.useState(four);
@@ -30,10 +21,7 @@ export default function Yacht() {
   const [sixthDice, setSixthDice] = React.useState(six);
 
   const [isRolling, setIsRolling] = React.useState(false);
-  const [dieValue, diceValue] = React.useState(0);
-  const [rollCount, setRollCount] = React.useState(0);
 
-  const [firstDiceColor, setFirstDiceColor] = React.useState("black");
   const [secondDiceColor, setSecondDiceColor] = React.useState("black");
   const [thirdDiceColor, setThirdDiceColor] = React.useState("black");
   const [fourthDiceColor, setFourthDiceColor] = React.useState("black");
@@ -94,32 +82,32 @@ export default function Yacht() {
   );
 
   async function swapColor(diceNum: number) {
-    if (diceNum == 1) {
-      if (secondDiceColor == "black") {
+    if (diceNum === 1) {
+      if (secondDiceColor === "black") {
         setSecondDiceColor("red");
       } else {
         setSecondDiceColor("black");
       }
-    } else if (diceNum == 2) {
-      if (thirdDiceColor == "black") {
+    } else if (diceNum === 2) {
+      if (thirdDiceColor === "black") {
         setThirdDiceColor("red");
       } else {
         setThirdDiceColor("black");
       }
-    } else if (diceNum == 3) {
-      if (fourthDiceColor == "black") {
+    } else if (diceNum === 3) {
+      if (fourthDiceColor === "black") {
         setFourthDiceColor("red");
       } else {
         setFourthDiceColor("black");
       }
-    } else if (diceNum == 4) {
-      if (fifthDiceColor == "black") {
+    } else if (diceNum === 4) {
+      if (fifthDiceColor === "black") {
         setFifthDiceColor("red");
       } else {
         setFifthDiceColor("black");
       }
-    } else if (diceNum == 5) {
-      if (sixthDiceColor == "black") {
+    } else if (diceNum === 5) {
+      if (sixthDiceColor === "black") {
         setSixthDiceColor("red");
       } else {
         setSixthDiceColor("black");
@@ -130,112 +118,49 @@ export default function Yacht() {
   async function roll() {
     setIsRolling(true);
 
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
-    sixthDiceColor == "black" ? setSixthDice(pipArray[randomNum() - 1]) : null;
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
+    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
 
     await delay(100);
 
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
-    sixthDiceColor == "black" ? setSixthDice(pipArray[randomNum() - 1]) : null;
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
+    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
 
     await delay(100);
 
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
-    sixthDiceColor == "black" ? setSixthDice(pipArray[randomNum() - 1]) : null;
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
+    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
 
     await delay(100);
 
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
-    sixthDiceColor == "black" ? setSixthDice(pipArray[randomNum() - 1]) : null;
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
+    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
 
     await delay(100);
 
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
-    sixthDiceColor == "black" ? setSixthDice(pipArray[randomNum() - 1]) : null;
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
+    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
 
     setIsRolling(false);
   }
 
   function delay(durationMS: number) {
     return new Promise((resolve) => setTimeout(resolve, durationMS));
-  }
-  function add() {
-    if (diceCount == 0) {
-      setFirstDiceColor("black");
-      diceCount++;
-    } else if (diceCount == 1) {
-      setSecondDiceColor("black");
-      diceCount++;
-    } else if (diceCount == 2) {
-      setThirdDiceColor("black");
-      diceCount++;
-    } else if (diceCount == 3) {
-      setFourthDiceColor("black");
-      diceCount++;
-    } else if (diceCount == 4) {
-      setFifthDiceColor("black");
-      diceCount++;
-    } else if (diceCount == 5) {
-      setSixthDiceColor("black");
-      diceCount++;
-    }
-  }
-
-  function subtract() {
-    if (diceCount == 6) {
-      setSixthDiceColor("white");
-      diceCount--;
-    } else if (diceCount == 5) {
-      setFifthDiceColor("white");
-      diceCount--;
-    } else if (diceCount == 4) {
-      setFourthDiceColor("white");
-      diceCount--;
-    } else if (diceCount == 3) {
-      setThirdDiceColor("white");
-      diceCount--;
-    } else if (diceCount == 2) {
-      setSecondDiceColor("white");
-      diceCount--;
-    } else if (diceCount == 1) {
-      setFirstDiceColor("white");
-      diceCount--;
-    }
   }
 }
 

@@ -1,12 +1,5 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-  Button,
-  TouchableOpacity,
-  Pressable,
-} from "react-native";
-import React, { useState } from "react";
+import { Text, View, StyleSheet, Button, Pressable } from "react-native";
+import React from "react";
 import ShakeSensor from "../components/ShakeSensor";
 
 let one = "\u2680";
@@ -19,10 +12,8 @@ let pipArray = [one, two, three, four, five, six];
 
 const randomNum = (min = 1, max = 6) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
-let diceCount = 6;
 
 export default function ThreesGame() {
-  const [firstDice, setFirstDice] = React.useState(one);
   const [secondDice, setSecondDice] = React.useState(two);
   const [thirdDice, setThirdDice] = React.useState(three);
   const [fourthDice, setFourthDice] = React.useState(four);
@@ -36,7 +27,6 @@ export default function ThreesGame() {
 
   const [pressDisabled, setPressDisabled] = React.useState(true);
 
-  const [firstDiceColor, setFirstDiceColor] = React.useState("black");
   const [secondDiceColor, setSecondDiceColor] = React.useState("black");
   const [thirdDiceColor, setThirdDiceColor] = React.useState("black");
   const [fourthDiceColor, setFourthDiceColor] = React.useState("black");
@@ -105,156 +95,86 @@ export default function ThreesGame() {
   async function swapColor(diceNum: number) {
     let tempDiceValue = diceValue;
 
-    if (diceNum == 1) {
-      if (secondDiceColor == "black") {
+    if (diceNum === 1) {
+      if (secondDiceColor === "black") {
         setSecondDiceColor("red");
-        if (secondDice == one) {
+        if (secondDice === one) {
           tempDiceValue += 1;
-        } else if (secondDice == two) {
+        } else if (secondDice === two) {
           tempDiceValue += 2;
-        } else if (secondDice == four) {
+        } else if (secondDice === four) {
           tempDiceValue += 4;
-        } else if (secondDice == five) {
+        } else if (secondDice === five) {
           tempDiceValue += 5;
-        } else if (secondDice == six) {
+        } else if (secondDice === six) {
           tempDiceValue += 6;
         }
         setIsRolling(false);
       }
-      // else {
-      //     setSecondDiceColor("black");
-      //     if (secondDice == one) {
-      //         tempDiceValue -= 1;
-      //     } else if (secondDice == two) {
-      //         tempDiceValue -= 2;
-      //     } else if (secondDice == four) {
-      //         tempDiceValue -= 4;
-      //     } else if (secondDice == five) {
-      //         tempDiceValue -= 5;
-      //     } else if (secondDice == six) {
-      //         tempDiceValue -= 6;
-      //     }
-      // }
-    } else if (diceNum == 2) {
-      if (thirdDiceColor == "black") {
+    } else if (diceNum === 2) {
+      if (thirdDiceColor === "black") {
         setThirdDiceColor("red");
-        if (thirdDice == one) {
+        if (thirdDice === one) {
           tempDiceValue += 1;
-        } else if (thirdDice == two) {
+        } else if (thirdDice === two) {
           tempDiceValue += 2;
-        } else if (thirdDice == four) {
+        } else if (thirdDice === four) {
           tempDiceValue += 4;
-        } else if (thirdDice == five) {
+        } else if (thirdDice === five) {
           tempDiceValue += 5;
-        } else if (thirdDice == six) {
+        } else if (thirdDice === six) {
           tempDiceValue += 6;
         }
         setIsRolling(false);
       }
-      // else {
-      //     setThirdDiceColor("black");
-      //     if (thirdDice == one) {
-      //         tempDiceValue -= 1;
-      //     } else if (thirdDice == two) {
-      //         tempDiceValue -= 2;
-      //     } else if (thirdDice == four) {
-      //         tempDiceValue -= 4;
-      //     } else if (thirdDice == five) {
-      //         tempDiceValue -= 5;
-      //     } else if (thirdDice == six) {
-      //         tempDiceValue -= 6;
-      //     }
-      // }
-    } else if (diceNum == 3) {
-      if (fourthDiceColor == "black") {
+    } else if (diceNum === 3) {
+      if (fourthDiceColor === "black") {
         setFourthDiceColor("red");
-        if (fourthDice == one) {
+        if (fourthDice === one) {
           tempDiceValue += 1;
-        } else if (fourthDice == two) {
+        } else if (fourthDice === two) {
           tempDiceValue += 2;
-        } else if (fourthDice == four) {
+        } else if (fourthDice === four) {
           tempDiceValue += 4;
-        } else if (fourthDice == five) {
+        } else if (fourthDice === five) {
           tempDiceValue += 5;
-        } else if (fourthDice == six) {
+        } else if (fourthDice === six) {
           tempDiceValue += 6;
         }
         setIsRolling(false);
       }
-      // else {
-      //     setFourthDiceColor("black");
-      //     if (fourthDice == one) {
-      //         tempDiceValue -= 1;
-      //     } else if (fourthDice == two) {
-      //         tempDiceValue -= 2;
-      //     } else if (fourthDice == four) {
-      //         tempDiceValue -= 4;
-      //     } else if (fourthDice == five) {
-      //         tempDiceValue -= 5;
-      //     } else if (fourthDice == six) {
-      //         tempDiceValue -= 6;
-      //     }
-      // }
-    } else if (diceNum == 4) {
-      if (fifthDiceColor == "black") {
+    } else if (diceNum === 4) {
+      if (fifthDiceColor === "black") {
         setFifthDiceColor("red");
-        if (fifthDice == one) {
+        if (fifthDice === one) {
           tempDiceValue += 1;
-        } else if (fifthDice == two) {
+        } else if (fifthDice === two) {
           tempDiceValue += 2;
-        } else if (fifthDice == four) {
+        } else if (fifthDice === four) {
           tempDiceValue += 4;
-        } else if (fifthDice == five) {
+        } else if (fifthDice === five) {
           tempDiceValue += 5;
-        } else if (fifthDice == six) {
+        } else if (fifthDice === six) {
           tempDiceValue += 6;
         }
         setIsRolling(false);
       }
-      // else {
-      //     setFifthDiceColor("black");
-      //     if (fifthDice == one) {
-      //         tempDiceValue -= 1;
-      //     } else if (fifthDice == two) {
-      //         tempDiceValue -= 2;
-      //     } else if (fifthDice == four) {
-      //         tempDiceValue -= 4;
-      //     } else if (fifthDice == five) {
-      //         tempDiceValue -= 5;
-      //     } else if (fifthDice == six) {
-      //         tempDiceValue -= 6;
-      //     }
-      // }
-    } else if (diceNum == 5) {
-      if (sixthDiceColor == "black") {
+    } else if (diceNum === 5) {
+      if (sixthDiceColor === "black") {
         setSixthDiceColor("red");
-        if (sixthDice == one) {
+        if (sixthDice === one) {
           tempDiceValue += 1;
-        } else if (sixthDice == two) {
+        } else if (sixthDice === two) {
           tempDiceValue += 2;
-        } else if (sixthDice == four) {
+        } else if (sixthDice === four) {
           tempDiceValue += 4;
-        } else if (sixthDice == five) {
+        } else if (sixthDice === five) {
           tempDiceValue += 5;
-        } else if (sixthDice == six) {
+        } else if (sixthDice === six) {
           tempDiceValue += 6;
         }
         setIsRolling(false);
       }
-      //  else {
-      //     setSixthDiceColor("black");
-      //     if (sixthDice == one) {
-      //         tempDiceValue -= 1;
-      //     } else if (sixthDice == two) {
-      //         tempDiceValue -= 2;
-      //     } else if (sixthDice == four) {
-      //         tempDiceValue -= 4;
-      //     } else if (sixthDice == five) {
-      //         tempDiceValue -= 5;
-      //     } else if (sixthDice == six) {
-      //         tempDiceValue -= 6;
-      //     }
-      // }
     }
 
     setDiceValue(tempDiceValue);
@@ -275,13 +195,13 @@ export default function ThreesGame() {
   }
 
   async function roll() {
-    if (pressDisabled == true) {
+    if (pressDisabled === true) {
       setPressDisabled(false);
     }
 
     setRollCount(rollCount + 1);
 
-    if (rollCount == 5) {
+    if (rollCount === 5) {
       setRollCount(0);
       setLastDiceValue(diceValue);
       setDiceValue(0);
@@ -297,112 +217,49 @@ export default function ThreesGame() {
 
     setIsRolling(true);
 
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
-    sixthDiceColor == "black" ? setSixthDice(pipArray[randomNum() - 1]) : null;
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
+    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
 
     await delay(100);
 
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
-    sixthDiceColor == "black" ? setSixthDice(pipArray[randomNum() - 1]) : null;
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
+    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
 
     await delay(100);
 
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
-    sixthDiceColor == "black" ? setSixthDice(pipArray[randomNum() - 1]) : null;
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
+    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
 
     await delay(100);
 
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
-    sixthDiceColor == "black" ? setSixthDice(pipArray[randomNum() - 1]) : null;
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
+    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
 
     await delay(100);
 
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
-    sixthDiceColor == "black" ? setSixthDice(pipArray[randomNum() - 1]) : null;
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
+    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
 
     //setIsRolling(false);
   }
 
   function delay(durationMS: number) {
     return new Promise((resolve) => setTimeout(resolve, durationMS));
-  }
-  function add() {
-    if (diceCount == 0) {
-      setFirstDiceColor("black");
-      diceCount++;
-    } else if (diceCount == 1) {
-      setSecondDiceColor("black");
-      diceCount++;
-    } else if (diceCount == 2) {
-      setThirdDiceColor("black");
-      diceCount++;
-    } else if (diceCount == 3) {
-      setFourthDiceColor("black");
-      diceCount++;
-    } else if (diceCount == 4) {
-      setFifthDiceColor("black");
-      diceCount++;
-    } else if (diceCount == 5) {
-      setSixthDiceColor("black");
-      diceCount++;
-    }
-  }
-
-  function subtract() {
-    if (diceCount == 6) {
-      setSixthDiceColor("white");
-      diceCount--;
-    } else if (diceCount == 5) {
-      setFifthDiceColor("white");
-      diceCount--;
-    } else if (diceCount == 4) {
-      setFourthDiceColor("white");
-      diceCount--;
-    } else if (diceCount == 3) {
-      setThirdDiceColor("white");
-      diceCount--;
-    } else if (diceCount == 2) {
-      setSecondDiceColor("white");
-      diceCount--;
-    } else if (diceCount == 1) {
-      setFirstDiceColor("white");
-      diceCount--;
-    }
   }
 }
 

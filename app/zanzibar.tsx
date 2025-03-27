@@ -1,5 +1,5 @@
-import { Text, View, StyleSheet, Button, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import { Text, View, StyleSheet, Button } from "react-native";
+import React from "react";
 import ShakeSensor from "@/components/ShakeSensor";
 
 let one = "\u2680";
@@ -31,9 +31,9 @@ export default function Zanzibar() {
 
   const [isRolling, setIsRolling] = React.useState(false);
 
-  const [firstDiceColor, setFirstDiceColor] = React.useState("black");
-  const [secondDiceColor, setSecondDiceColor] = React.useState("black");
-  const [thirdDiceColor, setThirdDiceColor] = React.useState("black");
+  const firstDiceColor = "black";
+  const secondDiceColor = "black";
+  const thirdDiceColor = "black";
 
   return (
     <View style={styles.main}>
@@ -84,7 +84,7 @@ export default function Zanzibar() {
           style={{ flexDirection: "row", justifyContent: "center", gap: 10 }}
         >
           <Button
-            disabled={isRolling || rollNumber == 3}
+            disabled={isRolling || rollNumber === 3}
             onPress={roll}
             title="Roll"
           />
@@ -143,7 +143,7 @@ export default function Zanzibar() {
     if (fdr === "\u2683" && sdr === "\u2684" && tdr === "\u2685") {
       points = "Zanzibar";
       highest = points;
-    } else if (fdr == sdr && sdr == tdr) {
+    } else if (fdr === sdr && sdr === tdr) {
       points = "Higher Combo!";
       if (highest !== "Zanzibar") {
         highest = points;

@@ -13,13 +13,6 @@ let pipArray = [ACE, KING, QUEEN, JACK, TEN, NINE];
 const randomNum = (min = 1, max = 6) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
-const STRAIGHT = [];
-const FOUR_OF_A_KIND = [];
-const FULL_HOUSE = [];
-const THREE_OF_A_KIND = [];
-const TWO_PAIR = [];
-const ONE_PAIR = [];
-
 export default function PokerDice() {
   const [firstDice, setFirstDice] = React.useState(ACE);
   const [secondDice, setSecondDice] = React.useState(ACE);
@@ -36,32 +29,32 @@ export default function PokerDice() {
   const [fifthDiceColor, setFifthDiceColor] = React.useState("black");
 
   async function swapColor(diceNum: number) {
-    if (diceNum == 1) {
-      if (firstDiceColor == "black") {
+    if (diceNum === 1) {
+      if (firstDiceColor === "black") {
         setFirstDiceColor("red");
       } else {
         setFirstDiceColor("black");
       }
-    } else if (diceNum == 2) {
-      if (secondDiceColor == "black") {
+    } else if (diceNum === 2) {
+      if (secondDiceColor === "black") {
         setSecondDiceColor("red");
       } else {
         setSecondDiceColor("black");
       }
-    } else if (diceNum == 3) {
-      if (thirdDiceColor == "black") {
+    } else if (diceNum === 3) {
+      if (thirdDiceColor === "black") {
         setThirdDiceColor("red");
       } else {
         setThirdDiceColor("black");
       }
-    } else if (diceNum == 4) {
-      if (fourthDiceColor == "black") {
+    } else if (diceNum === 4) {
+      if (fourthDiceColor === "black") {
         setFourthDiceColor("red");
       } else {
         setFourthDiceColor("black");
       }
-    } else if (diceNum == 5) {
-      if (fifthDiceColor == "black") {
+    } else if (diceNum === 5) {
+      if (fifthDiceColor === "black") {
         setFifthDiceColor("red");
       } else {
         setFifthDiceColor("black");
@@ -76,63 +69,43 @@ export default function PokerDice() {
   async function roll() {
     setIsRolling(true);
 
-    firstDiceColor == "black" ? setFirstDice(pipArray[randomNum() - 1]) : null;
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
+    firstDiceColor === "black" && setFirstDice(pipArray[randomNum() - 1]);
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
 
     await delay(100);
 
-    firstDiceColor == "black" ? setFirstDice(pipArray[randomNum() - 1]) : null;
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
+    firstDiceColor === "black" && setFirstDice(pipArray[randomNum() - 1]);
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
 
     await delay(100);
 
-    firstDiceColor == "black" ? setFirstDice(pipArray[randomNum() - 1]) : null;
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
+    firstDiceColor === "black" && setFirstDice(pipArray[randomNum() - 1]);
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
 
     await delay(100);
 
-    firstDiceColor == "black" ? setFirstDice(pipArray[randomNum() - 1]) : null;
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
+    firstDiceColor === "black" && setFirstDice(pipArray[randomNum() - 1]);
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
 
     await delay(100);
 
-    firstDiceColor == "black" ? setFirstDice(pipArray[randomNum() - 1]) : null;
-    secondDiceColor == "black"
-      ? setSecondDice(pipArray[randomNum() - 1])
-      : null;
-    thirdDiceColor == "black" ? setThirdDice(pipArray[randomNum() - 1]) : null;
-    fourthDiceColor == "black"
-      ? setFourthDice(pipArray[randomNum() - 1])
-      : null;
-    fifthDiceColor == "black" ? setFifthDice(pipArray[randomNum() - 1]) : null;
+    firstDiceColor === "black" && setFirstDice(pipArray[randomNum() - 1]);
+    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
+    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
+    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
+    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
 
     setIsRolling(false);
   }

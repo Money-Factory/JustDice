@@ -1,5 +1,5 @@
-import { Text, View, StyleSheet, Button, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import { Text, View, StyleSheet, Button } from "react-native";
+import React from "react";
 import ShakeSensor from "../components/ShakeSensor";
 
 let one = "\u2680";
@@ -134,44 +134,44 @@ export default function Index() {
     return new Promise((resolve) => setTimeout(resolve, durationMS));
   }
   function add() {
-    if (diceCount == 0) {
+    if (diceCount === 0) {
       setFirstDiceColor("black");
       diceCount++;
-    } else if (diceCount == 1) {
+    } else if (diceCount === 1) {
       setSecondDiceColor("black");
       diceCount++;
-    } else if (diceCount == 2) {
+    } else if (diceCount === 2) {
       setThirdDiceColor("black");
       diceCount++;
-    } else if (diceCount == 3) {
+    } else if (diceCount === 3) {
       setFourthDiceColor("black");
       diceCount++;
-    } else if (diceCount == 4) {
+    } else if (diceCount === 4) {
       setFifthDiceColor("black");
       diceCount++;
-    } else if (diceCount == 5) {
+    } else if (diceCount === 5) {
       setSixthDiceColor("black");
       diceCount++;
     }
   }
 
   function subtract() {
-    if (diceCount == 6) {
+    if (diceCount === 6) {
       setSixthDiceColor("white");
       diceCount--;
-    } else if (diceCount == 5) {
+    } else if (diceCount === 5) {
       setFifthDiceColor("white");
       diceCount--;
-    } else if (diceCount == 4) {
+    } else if (diceCount === 4) {
       setFourthDiceColor("white");
       diceCount--;
-    } else if (diceCount == 3) {
+    } else if (diceCount === 3) {
       setThirdDiceColor("white");
       diceCount--;
-    } else if (diceCount == 2) {
+    } else if (diceCount === 2) {
       setSecondDiceColor("white");
       diceCount--;
-    } else if (diceCount == 1) {
+    } else if (diceCount === 1) {
       setFirstDiceColor("white");
       diceCount--;
     }
