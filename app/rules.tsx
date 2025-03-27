@@ -13,15 +13,15 @@ a call of "liar". Raising the bid means either increasing the quantity, or the f
 quantity of a higher face (allowing a player to "reset" the quantity) \n\n\
 If the current player challenges the previous bid, all dice are revealed. If the bid is valid (at least as many of the face value and any wilds showing as \
 were bid), the bidder wins. Otherwise, the challenger wins. The player who loses a round loses one of their dice. The last player to still retain a die \
-(or dice) is the winner. The winner of the last round starts the bidding on the next round.';
+(or dice) is the winner. The winner of the last round starts the bidding on the next round.\n';
 
 const simpleDice = 
   'Simple dice is just a simple mode where you can roll dice and save some to the side between roles.\n\n\
-In this mode you can make your own games or play something more well known like Yacht Dice!';
+In this mode you can make your own games or play something more well known like Yacht Dice!\n';
 
 const threes =
   'Threes is a dice game where players compete for the lowest score while rolling five dice. Dice are added together based on their face values (1-6), except for 3, which is worth 0. If a player rolls all sixes (6-6-6-6-6), they “shoot the moon”\
-  and immediately win the game.\n\nEach player’s turn works as follows:\n1. Roll all five dice\n2. Set aside between one and five dice, which become locked in and cannot be rolled again\n3. Roll all remaining dice\n4. Repeat #2-3 until there are no remaining dice to be rolled';
+  and immediately win the game.\n\nEach player’s turn works as follows:\n1. Roll all five dice\n2. Set aside between one and five dice, which become locked in and cannot be rolled again\n3. Roll all remaining dice\n4. Repeat #2-3 until there are no remaining dice to be rolled\n';
 
 const poker =
   'Poker Dice combines the rules of both Yacht and Poker.\n\n\
@@ -41,18 +41,18 @@ export default function Rules() {
         <ScrollView>
         <Text style={styles.baseText}>
           <Text style={styles.titleText}>
-            {"Liar's Dice"}
-            {"\n"}
-          </Text>
-          <Text>{liarsDiceRules}{"\n"}</Text>
-        </Text>
-
-        <Text style={styles.baseText}>
-          <Text style={styles.titleText}>
             {"Simple Dice"}
             {"\n"}
           </Text>
           <Text>{simpleDice}{"\n"}</Text>
+        </Text>
+        
+        <Text style={styles.baseText}>
+          <Text style={styles.titleText}>
+            {"Liar's Dice"}
+            {"\n"}
+          </Text>
+          <Text>{liarsDiceRules}{"\n"}</Text>
         </Text>
 
         <Text style={styles.baseText}>
