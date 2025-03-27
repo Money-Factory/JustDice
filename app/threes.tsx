@@ -271,7 +271,7 @@ export default function ThreesGame() {
     setFifthDiceColor("black");
     setSixthDiceColor("black");
 
-    setPressDisabled(true);
+    setIsRolling(false);
   }
 
   async function roll() {
