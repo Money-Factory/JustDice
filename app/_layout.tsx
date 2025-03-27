@@ -7,17 +7,17 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Drawer>
         <Drawer.Screen
+          name="fivedice" // This is the name of the page and must match the url from root
+          options={{
+            drawerLabel: "Simple Dice",
+            title: "Simple Dice",
+          }}
+        />
+        <Drawer.Screen
           name="index" // This is the name of the page and must match the url from root
           options={{
             drawerLabel: "Liar's Dice",
             title: "Liar's Dice",
-          }}
-        />
-        <Drawer.Screen
-          name="yacht" // This is the name of the page and must match the url from root
-          options={{
-            drawerLabel: "Yacht Dice",
-            title: "Yacht Dice",
           }}
         />
         <Drawer.Screen
