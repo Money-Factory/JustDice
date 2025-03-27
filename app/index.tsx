@@ -1,21 +1,16 @@
-import { Text, View, StyleSheet, Button } from "react-native";
+import { View, StyleSheet, Button } from "react-native";
 import React from "react";
 import ShakeSensor from "../components/ShakeSensor";
-
-const ONE = "\u2680";
-const TWO = "\u2681";
-const THREE = "\u2682";
-const FOUR = "\u2683";
-const FIVE = "\u2684";
-const SIX = "\u2685";
-const POSSIBLE_VALUES = [ONE, TWO, THREE, FOUR, FIVE, SIX];
+import Dice, { DiceValue } from "../components/Dice";
 
 const MAX_DIE_COUNT = 6;
 const MIN_DIE_COUNT = 0;
 
 export default function Index() {
   const [diceCount, setDiceCount] = React.useState(MAX_DIE_COUNT);
-  const [diceValues, setDiceValues] = React.useState([...POSSIBLE_VALUES]);
+  const [diceValues, setDiceValues] = React.useState([
+    ...Object.values(DiceValue),
+  ]);
   const [isRolling, setIsRolling] = React.useState(false);
 
   const removeDie = () =>
@@ -26,8 +21,11 @@ export default function Index() {
   const roll = async () => {
     setIsRolling(true);
 
-    for (let i = 0; i < 5; i++) {
-      setDiceValues(diceValues.map(() => POSSIBLE_VALUES[randomNum() - 1]));
+    const TIMES_TO_ROLL = 5;
+    for (let i = 0; i < TIMES_TO_ROLL; i++) {
+      setDiceValues(
+        diceValues.map(() => Object.values(DiceValue)[randomNum() - 1])
+      );
       await delay(100);
     }
 
@@ -54,7 +52,7 @@ export default function Index() {
 
       <View style={styles.diceSection}>
         {Array.from({ length: diceCount }).map((_value, index) => {
-          return <Text style={styles.diceItem}>{diceValues[index]}</Text>;
+          return <Dice value={diceValues[index]} />;
         })}
       </View>
 
@@ -80,12 +78,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
-  },
-  diceItem: {
-    width: "45%",
-    margin: "2.5%",
-    textAlign: "center",
-    fontSize: 175,
   },
   topBar: {
     height: "10%",
