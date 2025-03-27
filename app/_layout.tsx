@@ -23,22 +23,15 @@ export default function RootLayout() {
         <Drawer.Screen
           name="threes" // This is the name of the page and must match the url from root
           options={{
-            drawerLabel: 'Threes',
-            title: 'Threes',
-          }}
-        />
-        <Drawer.Screen
-          name="bunco" // This is the name of the page and must match the url from root
-          options={{
-            drawerLabel: 'Bunco',
-            title: 'Bunco',
+            drawerLabel: "Threes",
+            title: "Threes",
           }}
         />
         <Drawer.Screen
           name="poker" // This is the name of the page and must match the url from root
           options={{
-            drawerLabel: 'Poker',
-            title: 'Poker',
+            drawerLabel: "Poker",
+            title: "Poker",
           }}
         />
         <Drawer.Screen
@@ -49,11 +42,11 @@ export default function RootLayout() {
           }}
         />
         <Drawer.Screen
-            name="zanzibar" // This is the name of the page and must match the url from root
-            options={{
-                drawerLabel: 'Zanzibar',
-                title: 'Zanzibar',
-            }}
+          name="zanzibar" // This is the name of the page and must match the url from root
+          options={{
+            drawerLabel: "Zanzibar",
+            title: "Zanzibar",
+          }}
         />
       </Drawer>
     </GestureHandlerRootView>
