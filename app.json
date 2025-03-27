@@ -2,7 +2,7 @@
   "expo": {
     "name": "SixSimpleDice",
     "slug": "SixSimpleDice",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -18,7 +18,7 @@
       "bundleIdentifier": "com.20boyerd.SixSimpleDice"
     },
     "android": {
-      "package": "com.boyerd.sixsimpledice",
+      "package": "com.boyerd.sixsimpledice"
     },
     "web": {
       "bundler": "metro",
