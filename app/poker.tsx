@@ -1,7 +1,6 @@
 import { Text, View, StyleSheet, Button, Pressable } from "react-native";
 import React, { useEffect } from "react";
 import ShakeSensor from "../components/ShakeSensor";
-import { finishScreenTransition } from "react-native-reanimated";
 
 let ACE = "\u0041";
 let KING = "\u004B";
