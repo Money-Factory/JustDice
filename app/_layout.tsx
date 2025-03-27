@@ -41,14 +41,14 @@ export default function RootLayout() {
             title: "Zanzibar",
           }}
         />
+        <Drawer.Screen
+          name="rules" // This is the name of the page and must match the url from root
+          options={{
+            drawerLabel: "Rules",
+            title: "Rules",
+          }}
+        />
       </Drawer>
-      <Drawer.Screen
-        name="rules" // This is the name of the page and must match the url from root
-        options={{
-          drawerLabel: "Rules",
-          title: "Rules",
-        }}
-      />
     </GestureHandlerRootView>
   );
 }
