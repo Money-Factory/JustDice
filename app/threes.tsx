@@ -14,7 +14,6 @@ let pipArray = [one, two, three, four, five, six];
 const randomNum = (min = 1, max = 6) => Math.floor(Math.random() * (max - min + 1)) + min;
 let diceCount = 6;
 
-
 export default function ThreesGame() {
   const [firstDice, setFirstDice] = React.useState(one);
   const [secondDice, setSecondDice] = React.useState(two);
@@ -261,7 +260,7 @@ export default function ThreesGame() {
     setFifthDiceColor("black");
     setSixthDiceColor("black");
 
-    setPressDisabled(true);
+    setIsRolling(false);
   }
 
   async function roll() {
