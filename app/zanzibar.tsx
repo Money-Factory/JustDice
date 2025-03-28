@@ -1,90 +1,122 @@
 import { Text, View, StyleSheet, Button } from "react-native";
 import React from "react";
 import ShakeSensor from "@/components/ShakeSensor";
+import { delay, randomNum } from "@/utils/utils";
+import Dice from "@/components/Dice";
 
-let one = "\u2680";
-let two = "\u2681";
-let three = "\u2682";
-let four = "\u2683";
-let five = "\u2684";
-let six = "\u2685";
-let pipArray = [one, two, three, four, five, six];
-let mapToInt = new Map([
-  [one, 100],
-  [two, 2],
-  [three, 3],
-  [four, 4],
-  [five, 5],
-  [six, 60],
-]);
-
-const randomNum = (min = 1, max = 6) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
-let rollNumber = 0;
-let points: string | number = 0;
-let highest: string | number = 0;
+const pointValues: { [key: number]: number } = {
+  1: 100,
+  2: 2,
+  3: 3,
+  4: 4,
+  5: 5,
+  6: 60,
+};
+const NUM_DICE = 3;
 
 export default function Zanzibar() {
-  const [firstDice, setFirstDice] = React.useState(one);
-  const [secondDice, setSecondDice] = React.useState(two);
-  const [thirdDice, setThirdDice] = React.useState(three);
-
+  const [rolls, setRolls] = React.useState(0);
+  const [diceValues, setDiceValues] = React.useState(
+    Array.from({ length: NUM_DICE }, (_, index) => index + 1)
+  );
+  const [points, setPoints] = React.useState("0");
+  const [highest, setHighest] = React.useState("0");
   const [isRolling, setIsRolling] = React.useState(false);
 
-  const firstDiceColor = "black";
-  const secondDiceColor = "black";
-  const thirdDiceColor = "black";
+  async function reset() {
+    setRolls(0);
+    setPoints("0");
+    setHighest("0");
+    setDiceValues(Array.from({ length: NUM_DICE }, (_, index) => index + 1));
+  }
+
+  async function roll() {
+    setIsRolling(true);
+    let updatedDice = [...diceValues];
+
+    const TIMES_TO_ROLL = 5;
+    for (let i = 0; i < TIMES_TO_ROLL; i++) {
+      updatedDice = updatedDice.map(() => randomNum());
+      setDiceValues(updatedDice);
+      await delay(100);
+    }
+
+    setIsRolling(false);
+    setRolls(rolls + 1);
+
+    const sortedDice = [...updatedDice].sort((a, b) => a - b);
+
+    let newPoints = "";
+
+    if (isZanzibar(sortedDice)) {
+      newPoints = "Zanzibar";
+    } else if (isHighCombo(sortedDice)) {
+      newPoints = "Higher Combo!";
+    } else if (isLowCombo(sortedDice)) {
+      newPoints = "Lower Combo!";
+    } else {
+      newPoints = `${
+        pointValues[updatedDice[0]] +
+        pointValues[updatedDice[1]] +
+        pointValues[updatedDice[2]]
+      }`;
+    }
+
+    setPoints(newPoints);
+
+    if (
+      newPoints === "Zanzibar" ||
+      (newPoints === "Higher Combo!" && highest !== "Zanzibar") ||
+      (newPoints === "Lower Combo!" &&
+        highest !== "Zanzibar" &&
+        highest !== "Higher Combo!") ||
+      (highest !== "Zanzibar" &&
+        highest !== "Higher Combo!" &&
+        highest !== "Lower Combo!" &&
+        Number(newPoints) > Number(highest))
+    ) {
+      setHighest(newPoints);
+    }
+  }
+
+  const isZanzibar = (sortedDice: number[]) => {
+    const expected = [4, 5, 6];
+    return sortedDice.every((value, index) => value === expected[index]);
+  };
+
+  const isHighCombo = (sortedDice: number[]) => sortedDice[0] === sortedDice[2];
+
+  const isLowCombo = (sortedDice: number[]) => {
+    const expected = [1, 2, 3];
+    return sortedDice.every((value, index) => value === expected[index]);
+  };
 
   return (
     <View style={styles.main}>
       <View style={styles.topBar}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            gap: 20,
-            paddingTop: 10,
-          }}
-        >
-          <Text style={{ fontSize: 24 }}>Roll: {rollNumber}</Text>
+        <View style={styles.containerRow}>
+          <Text style={styles.headerText}>Roll: {rolls}</Text>
         </View>
-        <View
-          style={{ flexDirection: "row", justifyContent: "center", gap: 20 }}
-        >
-          <Text style={{ fontSize: 24 }}>Points: {points}</Text>
+        <View style={styles.containerRow}>
+          <Text style={styles.headerText}>Points: {points}</Text>
         </View>
-        <View
-          style={{ flexDirection: "row", justifyContent: "center", gap: 20 }}
-        >
-          <Text style={{ fontSize: 24 }}>Highest Roll: {highest}</Text>
+        <View style={styles.containerRow}>
+          <Text style={styles.headerText}>Highest Roll: {highest}</Text>
         </View>
       </View>
 
       <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
 
       <View style={styles.diceSection}>
-        <View style={styles.diceRow}>
-          <Text style={{ fontSize: 175, color: firstDiceColor }}>
-            {firstDice}
-          </Text>
-          <Text style={{ fontSize: 175, color: secondDiceColor }}>
-            {secondDice}
-          </Text>
-        </View>
-
-        <View style={styles.diceRow}>
-          <Text style={{ fontSize: 175, color: thirdDiceColor }}>
-            {thirdDice}
-          </Text>
-        </View>
+        {Array.from({ length: NUM_DICE }).map((_value, index) => {
+          return <Dice key={index} value={diceValues[index]} />;
+        })}
       </View>
 
       <View style={styles.bottomBar}>
-        <View
-          style={{ flexDirection: "row", justifyContent: "center", gap: 10 }}
-        >
+        <View style={styles.containerRow}>
           <Button
-            disabled={isRolling || rollNumber === 3}
+            disabled={isRolling || rolls === 3}
             onPress={roll}
             title="Roll"
           />
@@ -93,104 +125,30 @@ export default function Zanzibar() {
       </View>
     </View>
   );
-
-  async function reset() {
-    rollNumber = 0;
-    points = 0;
-    highest = 0;
-    setFirstDice(one);
-    setSecondDice(two);
-    setThirdDice(three);
-  }
-
-  async function roll() {
-    setIsRolling(true);
-
-    setFirstDice(pipArray[randomNum() - 1]);
-    setSecondDice(pipArray[randomNum() - 1]);
-    setThirdDice(pipArray[randomNum() - 1]);
-
-    await delay(100);
-
-    setFirstDice(pipArray[randomNum() - 1]);
-    setSecondDice(pipArray[randomNum() - 1]);
-    setThirdDice(pipArray[randomNum() - 1]);
-
-    await delay(100);
-
-    setFirstDice(pipArray[randomNum() - 1]);
-    setSecondDice(pipArray[randomNum() - 1]);
-    setThirdDice(pipArray[randomNum() - 1]);
-
-    await delay(100);
-
-    setFirstDice(pipArray[randomNum() - 1]);
-    setSecondDice(pipArray[randomNum() - 1]);
-    setThirdDice(pipArray[randomNum() - 1]);
-
-    await delay(100);
-
-    let fdr = pipArray[randomNum() - 1];
-    setFirstDice(fdr);
-    let sdr = pipArray[randomNum() - 1];
-    setSecondDice(sdr);
-    let tdr = pipArray[randomNum() - 1];
-    setThirdDice(tdr);
-
-    setIsRolling(false);
-    rollNumber++;
-
-    if (fdr === "\u2683" && sdr === "\u2684" && tdr === "\u2685") {
-      points = "Zanzibar";
-      highest = points;
-    } else if (fdr === sdr && sdr === tdr) {
-      points = "Higher Combo!";
-      if (highest !== "Zanzibar") {
-        highest = points;
-      }
-    } else if (fdr === "\u2680" && sdr === "\u2681" && tdr === "\u2682") {
-      points = "Lower Combo!";
-      if (highest !== "Zanzibar" && highest !== "Higher Combo!") {
-        highest = points;
-      }
-    } else {
-      // @ts-ignore
-      points = mapToInt.get(fdr) + mapToInt.get(sdr) + mapToInt.get(tdr);
-      // @ts-ignore
-      if (
-        highest !== "Zanzibar" &&
-        highest !== "Higher Combo!" &&
-        highest !== "Lower Combo!" &&
-        points > highest
-      ) {
-        highest = points;
-      }
-    }
-  }
-
-  function delay(durationMS: number) {
-    return new Promise((resolve) => setTimeout(resolve, durationMS));
-  }
 }
 
 const styles = StyleSheet.create({
   main: {
     flex: 1,
     justifyContent: "center",
-    height: "100%",
+    height: "80%",
     backgroundColor: "white",
   },
-  diceRow: {
-    flex: 1,
-    flexWrap: "wrap",
+  containerRow: {
     flexDirection: "row",
-    backgroundColor: "white",
     justifyContent: "center",
-    height: "33%",
+    gap: 20,
+  },
+  headerText: {
+    fontSize: 24,
   },
   diceSection: {
-    height: "80%",
-    paddingTop: 15,
+    height: "75%",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
   },
   topBar: {
     height: "10%",
@@ -210,8 +168,6 @@ const styles = StyleSheet.create({
     paddingLeft: "35%",
     paddingRight: "35%",
   },
-  subtractButton: {},
-  addButton: {},
   container: {
     flex: 1,
     alignItems: "center",

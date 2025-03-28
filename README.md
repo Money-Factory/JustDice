@@ -14,7 +14,7 @@ This project uses [Expo](https://expo.dev) and was created with created with [`c
 2. Start the app
 
    ```bash
-    npx expo start
+    yarn start
    ```
 
 In the output, you'll find options to open the app in a
