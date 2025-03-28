@@ -63,27 +63,29 @@ export default function PokerDice() {
     }
   };
 
-  const checkForFiveOfAKind = (values: number[]) => {
-    return values[0] === values[values.length - 1];
+  const checkForFiveOfAKind = (sortedValues: number[]) => {
+    return sortedValues[0] === sortedValues[sortedValues.length - 1];
   };
 
-  const checkForFourOfAKind = (values: number[]) => {
+  const checkForFourOfAKind = (sortedValues: number[]) => {
     return (
-      values[0] === values[values.length - 2] ||
-      values[1] === values[values.length - 1]
+      sortedValues[0] === sortedValues[sortedValues.length - 2] ||
+      sortedValues[1] === sortedValues[sortedValues.length - 1]
     );
   };
 
-  const checkForFullHouse = (values: number[]) => {
+  const checkForFullHouse = (sortedValues: number[]) => {
     return (
-      (values[0] === values[2] && values[3] === values[4]) ||
-      (values[0] === values[1] && values[2] === values[4])
+      (sortedValues[0] === sortedValues[2] &&
+        sortedValues[3] === sortedValues[4]) ||
+      (sortedValues[0] === sortedValues[1] &&
+        sortedValues[2] === sortedValues[4])
     );
   };
 
-  const checkForStraight = (values: number[]) => {
-    for (let i = 1; i < values.length; i++) {
-      if (values[i] - values[i - 1] !== 1) {
+  const checkForStraight = (sortedValues: number[]) => {
+    for (let i = 1; i < sortedValues.length; i++) {
+      if (sortedValues[i] - sortedValues[i - 1] !== 1) {
         return false;
       }
     }
@@ -91,25 +93,28 @@ export default function PokerDice() {
     return true;
   };
 
-  const checkForThreeOfAKind = (values: number[]) => {
+  const checkForThreeOfAKind = (sortedValues: number[]) => {
     return (
-      values[0] === values[2] ||
-      values[1] === values[3] ||
-      values[2] === values[4]
+      sortedValues[0] === sortedValues[2] ||
+      sortedValues[1] === sortedValues[3] ||
+      sortedValues[2] === sortedValues[4]
     );
   };
 
-  const checkForTwoPair = (values: number[]) => {
+  const checkForTwoPair = (sortedValues: number[]) => {
     return (
-      (values[0] === values[1] && values[2] === values[3]) ||
-      (values[1] === values[2] && values[3] === values[4]) ||
-      (values[0] === values[1] && values[3] === values[4])
+      (sortedValues[0] === sortedValues[1] &&
+        sortedValues[2] === sortedValues[3]) ||
+      (sortedValues[1] === sortedValues[2] &&
+        sortedValues[3] === sortedValues[4]) ||
+      (sortedValues[0] === sortedValues[1] &&
+        sortedValues[3] === sortedValues[4])
     );
   };
 
-  const checkForOnePair = (values: number[]) => {
-    for (let i = 1; i < values.length; i++) {
-      if (values[i] === values[i - 1]) {
+  const checkForOnePair = (sortedValues: number[]) => {
+    for (let i = 1; i < sortedValues.length; i++) {
+      if (sortedValues[i] === sortedValues[i - 1]) {
         return true;
       }
     }
