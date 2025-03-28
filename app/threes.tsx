@@ -33,7 +33,7 @@ export default function ThreesGame() {
     setRollCount(0);
     setLastScore(score);
     setScore(0);
-    setSelectedDice(new Array(6).fill(false));
+    setSelectedDice(new Array(NUM_DICE).fill(false));
   };
 
   const roll = async () => {
