@@ -162,7 +162,7 @@ export default function PokerDice() {
             >
               <Text
                 style={{
-                  ...styles.card,
+                  ...styles.cardFace,
                   color: selectedCards[index] ? "red" : "black",
                 }}
               >
@@ -192,22 +192,19 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     justifyContent: "center",
     alignItems: "center",
-    paddingRight: 10,
-    paddingLeft: 10,
-    marginRight: 10,
-    marginLeft: 10,
-    height: "50%",
-    width: "10%",
+    margin: 10,
+    height: "40%",
+    width: "25%",
   },
   cardSection: {
     height: "80%",
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
     backgroundColor: "white",
   },
-  card: {
+  cardFace: {
     fontSize: 75,
   },
   topBar: {
