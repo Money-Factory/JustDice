@@ -11,7 +11,7 @@ export default function Yacht() {
     Array.from({ length: NUM_DICE }, (_, index) => index + 1)
   );
   const [selectedDice, setSelectedDice] = React.useState(
-    new Array(6).fill(false)
+    new Array(NUM_DICE).fill(false)
   );
   const [isRolling, setIsRolling] = React.useState(false);
 

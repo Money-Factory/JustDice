@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet, Button, Pressable } from "react-native";
 import React from "react";
-import ShakeSensor from "../components/ShakeSensor";
+import ShakeSensor from "@/components/ShakeSensor";
 import { delay, randomNum } from "@/utils/utils";
 
 enum CardValue {
