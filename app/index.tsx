@@ -1,7 +1,8 @@
 import { View, StyleSheet, Button } from "react-native";
 import React from "react";
-import ShakeSensor from "../components/ShakeSensor";
-import Dice, { DiceValue } from "../components/Dice";
+import Dice, { DiceValue } from "@/components/Dice";
+import ShakeSensor from "@/components/ShakeSensor";
+import { delay, randomNum } from "@/utils/utils";
 
 const MAX_DIE_COUNT = 6;
 const MIN_DIE_COUNT = 0;
@@ -32,18 +33,13 @@ export default function Index() {
     setIsRolling(false);
   };
 
-  const randomNum = (): number => Math.floor(Math.random() * 6) + 1;
-
-  const delay = (durationMS: number) =>
-    new Promise((resolve) => setTimeout(resolve, durationMS));
-
   return (
     <View style={styles.main}>
       <View style={styles.topBar}>
-        <View style={styles.subtractButton}>
+        <View>
           <Button onPress={removeDie} title="Remove Die" />
         </View>
-        <View style={styles.addButton}>
+        <View>
           <Button onPress={addDie} title="Add Die" />
         </View>
       </View>
@@ -102,8 +98,6 @@ const styles = StyleSheet.create({
     paddingLeft: "35%",
     paddingRight: "35%",
   },
-  subtractButton: {},
-  addButton: {},
   container: {
     flex: 1,
     alignItems: "center",

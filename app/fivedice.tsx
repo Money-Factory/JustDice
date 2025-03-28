@@ -1,32 +1,42 @@
-import { Text, View, StyleSheet, Button, Pressable } from "react-native";
+import { View, StyleSheet, Button } from "react-native";
 import React from "react";
-import ShakeSensor from "../components/ShakeSensor";
+import Dice, { DiceValue } from "@/components/Dice";
+import ShakeSensor from "@/components/ShakeSensor";
+import { delay, randomNum } from "@/utils/utils";
 
-let one = "\u2680";
-let two = "\u2681";
-let three = "\u2682";
-let four = "\u2683";
-let five = "\u2684";
-let six = "\u2685";
-let pipArray = [one, two, three, four, five, six];
-
-const randomNum = (min = 1, max = 6) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
+const NUM_DICE = 5;
 
 export default function Yacht() {
-  const [secondDice, setSecondDice] = React.useState(two);
-  const [thirdDice, setThirdDice] = React.useState(three);
-  const [fourthDice, setFourthDice] = React.useState(four);
-  const [fifthDice, setFifthDice] = React.useState(five);
-  const [sixthDice, setSixthDice] = React.useState(six);
-
+  const [diceValues, setDiceValues] = React.useState([
+    ...Object.values(DiceValue),
+  ]);
+  const [selectedDice, setSelectedDice] = React.useState(
+    new Array(6).fill(false)
+  );
   const [isRolling, setIsRolling] = React.useState(false);
 
-  const [secondDiceColor, setSecondDiceColor] = React.useState("black");
-  const [thirdDiceColor, setThirdDiceColor] = React.useState("black");
-  const [fourthDiceColor, setFourthDiceColor] = React.useState("black");
-  const [fifthDiceColor, setFifthDiceColor] = React.useState("black");
-  const [sixthDiceColor, setSixthDiceColor] = React.useState("black");
+  const onSelect = (index: number) =>
+    setSelectedDice(
+      selectedDice.map((value, i) => (i === index ? !value : value))
+    );
+
+  const roll = async () => {
+    setIsRolling(true);
+
+    const TIMES_TO_ROLL = 5;
+    for (let i = 0; i < TIMES_TO_ROLL; i++) {
+      setDiceValues(
+        diceValues.map((value, index) =>
+          selectedDice[index]
+            ? value
+            : Object.values(DiceValue)[randomNum() - 1]
+        )
+      );
+      await delay(100);
+    }
+
+    setIsRolling(false);
+  };
 
   return (
     <View style={styles.main}>
@@ -38,39 +48,15 @@ export default function Yacht() {
       <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
 
       <View style={styles.diceSection}>
-        <View style={styles.diceRow}>
-          <Pressable onPressIn={() => swapColor(1)}>
-            <Text style={{ fontSize: 175, color: secondDiceColor }}>
-              {secondDice}
-            </Text>
-          </Pressable>
-        </View>
-
-        <View style={styles.diceRow}>
-          <Pressable onPressIn={() => swapColor(2)}>
-            <Text style={{ fontSize: 175, color: thirdDiceColor }}>
-              {thirdDice}
-            </Text>
-          </Pressable>
-          <Pressable onPressIn={() => swapColor(3)}>
-            <Text style={{ fontSize: 175, color: fourthDiceColor }}>
-              {fourthDice}
-            </Text>
-          </Pressable>
-        </View>
-
-        <View style={styles.diceRow}>
-          <Pressable onPressIn={() => swapColor(4)}>
-            <Text style={{ fontSize: 175, color: fifthDiceColor }}>
-              {fifthDice}
-            </Text>
-          </Pressable>
-          <Pressable onPressIn={() => swapColor(5)}>
-            <Text style={{ fontSize: 175, color: sixthDiceColor }}>
-              {sixthDice}
-            </Text>
-          </Pressable>
-        </View>
+        {Array.from({ length: NUM_DICE }).map((_value, index) => {
+          return (
+            <Dice
+              key={index}
+              value={diceValues[index]}
+              onSelect={() => onSelect(index)}
+            />
+          );
+        })}
       </View>
 
       <View style={styles.bottomBar}>
@@ -80,88 +66,6 @@ export default function Yacht() {
       </View>
     </View>
   );
-
-  async function swapColor(diceNum: number) {
-    if (diceNum === 1) {
-      if (secondDiceColor === "black") {
-        setSecondDiceColor("red");
-      } else {
-        setSecondDiceColor("black");
-      }
-    } else if (diceNum === 2) {
-      if (thirdDiceColor === "black") {
-        setThirdDiceColor("red");
-      } else {
-        setThirdDiceColor("black");
-      }
-    } else if (diceNum === 3) {
-      if (fourthDiceColor === "black") {
-        setFourthDiceColor("red");
-      } else {
-        setFourthDiceColor("black");
-      }
-    } else if (diceNum === 4) {
-      if (fifthDiceColor === "black") {
-        setFifthDiceColor("red");
-      } else {
-        setFifthDiceColor("black");
-      }
-    } else if (diceNum === 5) {
-      if (sixthDiceColor === "black") {
-        setSixthDiceColor("red");
-      } else {
-        setSixthDiceColor("black");
-      }
-    }
-  }
-
-  async function roll() {
-    setIsRolling(true);
-
-    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
-    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
-    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
-    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
-    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
-
-    await delay(100);
-
-    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
-    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
-    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
-    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
-    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
-
-    await delay(100);
-
-    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
-    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
-    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
-    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
-    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
-
-    await delay(100);
-
-    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
-    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
-    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
-    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
-    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
-
-    await delay(100);
-
-    secondDiceColor === "black" && setSecondDice(pipArray[randomNum() - 1]);
-    thirdDiceColor === "black" && setThirdDice(pipArray[randomNum() - 1]);
-    fourthDiceColor === "black" && setFourthDice(pipArray[randomNum() - 1]);
-    fifthDiceColor === "black" && setFifthDice(pipArray[randomNum() - 1]);
-    sixthDiceColor === "black" && setSixthDice(pipArray[randomNum() - 1]);
-
-    setIsRolling(false);
-  }
-
-  function delay(durationMS: number) {
-    return new Promise((resolve) => setTimeout(resolve, durationMS));
-  }
 }
 
 const styles = StyleSheet.create({
@@ -180,6 +84,11 @@ const styles = StyleSheet.create({
   },
   diceSection: {
     height: "80%",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
   },
   topBar: {
     height: "10%",
