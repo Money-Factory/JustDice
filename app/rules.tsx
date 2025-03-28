@@ -26,8 +26,7 @@ const threes =
 const poker =
   "Poker Dice combines the rules of both Yacht and Poker.\n\n\
 Each player’s turn works as follows:\n1. Roll all five dice\n2. Set aside between one and five dice, which become locked in and cannot be rolled again\n3. Roll all remaining dice\n4. Repeat #2-3 until there are no remaining dice to be rolled\
-\n\nAt the end the hand rankes are as follows: Five of a Kind, Four of a Kind, Full House, Straight, Three of a Kind, Two Pair, One Pair, High Card";
-
+\n\nAt the end the hand ranks are as follows: Five of a Kind, Four of a Kind, Full House, Straight, Three of a Kind, Two Pair, One Pair, High Card";
 const zanzibar =
   "Zanzibar is dice game is for 2 or more players that uses an interesting scoring mechanism.\n\nThe first player may roll the dice up to three times in an attempt to get as high a score as possible.\
  They may stop rolling after the first or second roll if they wish. The other players, in turn, then try to roll a higher score in the same number or fewer rolls than the first player. The player with the lowest score looses the round.\
