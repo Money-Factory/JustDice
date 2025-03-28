@@ -79,6 +79,7 @@ export default function ThreesGame() {
         {Array.from({ length: NUM_DICE }).map((_value, index) => {
           return (
             <Dice
+              key={index}
               value={diceValues[index]}
               disabled={pressDisabled || selectedDice[index]}
               selected={selectedDice[index]}

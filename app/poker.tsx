@@ -154,6 +154,7 @@ export default function PokerDice() {
         {Array.from({ length: NUM_CARDS }).map((_value, index) => {
           return (
             <Pressable
+              key={index}
               onPressIn={() => onSelect(index)}
               style={{
                 ...styles.cardContainer,

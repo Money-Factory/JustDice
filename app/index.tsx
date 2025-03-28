@@ -46,7 +46,7 @@ export default function Index() {
 
       <View style={styles.diceSection}>
         {Array.from({ length: diceCount }).map((_value, index) => {
-          return <Dice value={diceValues[index]} />;
+          return <Dice key={index} value={diceValues[index]} />;
         })}
       </View>
 

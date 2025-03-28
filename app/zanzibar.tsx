@@ -109,7 +109,7 @@ export default function Zanzibar() {
 
       <View style={styles.diceSection}>
         {Array.from({ length: NUM_DICE }).map((_value, index) => {
-          return <Dice value={diceValues[index]} />;
+          return <Dice key={index} value={diceValues[index]} />;
         })}
       </View>
 
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     justifyContent: "center",
-    height: "100%",
+    height: "80%",
     backgroundColor: "white",
   },
   containerRow: {
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   diceSection: {
-    height: "80%",
+    height: "75%",
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
