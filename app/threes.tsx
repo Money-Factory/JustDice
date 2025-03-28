@@ -103,14 +103,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: "100%",
   },
-  diceRow: {
-    flex: 1,
-    flexWrap: "wrap",
-    flexDirection: "row",
-    backgroundColor: "white",
-    justifyContent: "center",
-    height: "33%",
-  },
   diceSection: {
     height: "80%",
     flexDirection: "row",
