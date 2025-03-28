@@ -1,6 +1,6 @@
 import { View, StyleSheet, Button } from "react-native";
 import React from "react";
-import Dice, { DiceValue } from "@/components/Dice";
+import Dice from "@/components/Dice";
 import ShakeSensor from "@/components/ShakeSensor";
 import { delay, randomNum } from "@/utils/utils";
 
@@ -9,9 +9,9 @@ const MIN_DIE_COUNT = 0;
 
 export default function Index() {
   const [diceCount, setDiceCount] = React.useState(MAX_DIE_COUNT);
-  const [diceValues, setDiceValues] = React.useState([
-    ...Object.values(DiceValue),
-  ]);
+  const [diceValues, setDiceValues] = React.useState(
+    Array.from({ length: MAX_DIE_COUNT }, (_, index) => index + 1)
+  );
   const [isRolling, setIsRolling] = React.useState(false);
 
   const removeDie = () =>
@@ -24,9 +24,7 @@ export default function Index() {
 
     const TIMES_TO_ROLL = 5;
     for (let i = 0; i < TIMES_TO_ROLL; i++) {
-      setDiceValues(
-        diceValues.map(() => Object.values(DiceValue)[randomNum() - 1])
-      );
+      setDiceValues(diceValues.map(() => randomNum()));
       await delay(100);
     }
 

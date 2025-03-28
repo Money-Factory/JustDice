@@ -1,15 +1,15 @@
 import { View, StyleSheet, Button } from "react-native";
 import React from "react";
-import Dice, { DiceValue } from "@/components/Dice";
+import Dice from "@/components/Dice";
 import ShakeSensor from "@/components/ShakeSensor";
 import { delay, randomNum } from "@/utils/utils";
 
 const NUM_DICE = 5;
 
 export default function Yacht() {
-  const [diceValues, setDiceValues] = React.useState([
-    ...Object.values(DiceValue),
-  ]);
+  const [diceValues, setDiceValues] = React.useState(
+    Array.from({ length: NUM_DICE }, (_, index) => index + 1)
+  );
   const [selectedDice, setSelectedDice] = React.useState(
     new Array(6).fill(false)
   );
@@ -27,9 +27,7 @@ export default function Yacht() {
     for (let i = 0; i < TIMES_TO_ROLL; i++) {
       setDiceValues(
         diceValues.map((value, index) =>
-          selectedDice[index]
-            ? value
-            : Object.values(DiceValue)[randomNum() - 1]
+          selectedDice[index] ? value : randomNum()
         )
       );
       await delay(100);
@@ -53,6 +51,7 @@ export default function Yacht() {
             <Dice
               key={index}
               value={diceValues[index]}
+              selected={selectedDice[index]}
               onSelect={() => onSelect(index)}
             />
           );
