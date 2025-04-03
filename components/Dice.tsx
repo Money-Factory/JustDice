@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, StyleSheet, Pressable } from "react-native";
+import { StyleSheet, Text, Pressable } from "react-native";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 const faces = ["\u2680", "\u2681", "\u2682", "\u2683", "\u2684", "\u2685"];
 
@@ -20,13 +21,15 @@ export default function Dice({
   selected,
   onSelect,
 }: DiceProps) {
+  const diceColor = useThemeColor({}, "text");
+
   return (
     <Pressable
       style={styles.wrapper}
       disabled={disabled}
       onPressIn={() => onSelect && onSelect()}
     >
-      <Text style={{ ...styles.dice, color: selected ? "red" : "black" }}>
+      <Text style={{ ...styles.dice, color: selected ? "red" : diceColor }}>
         {faces[value - 1]}
       </Text>
     </Pressable>

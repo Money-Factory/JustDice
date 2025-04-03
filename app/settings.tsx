@@ -1,12 +1,8 @@
 import React from "react";
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  Switch,
-  StyleSheet,
-} from "react-native";
+import { ActivityIndicator, Switch, StyleSheet } from "react-native";
 import { useSettings } from "@/components/contexts/SettingsContext";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
 
 export default function Settings() {
   const { settings, updateSetting, loading } = useSettings();
@@ -16,17 +12,17 @@ export default function Settings() {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.row}>
-        <Text>Shake to roll:</Text>
+    <ThemedView style={styles.container}>
+      <ThemedView style={styles.row}>
+        <ThemedText>Shake to roll:</ThemedText>
         <Switch
           value={settings.shakeEnabled}
           onValueChange={() =>
             updateSetting("shakeEnabled", !settings.shakeEnabled)
           }
         />
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   );
 }
 

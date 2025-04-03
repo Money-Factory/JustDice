@@ -1,8 +1,9 @@
-import { View, StyleSheet, Button } from "react-native";
+import { StyleSheet, Button } from "react-native";
 import React from "react";
 import Dice from "@/components/Dice";
 import { useSettings } from "@/components/contexts/SettingsContext";
 import ShakeSensor from "@/components/ShakeSensor";
+import { ThemedView } from "@/components/ThemedView";
 import { delay, randomNum } from "@/utils/utils";
 
 const NUM_DICE = 5;
@@ -39,17 +40,17 @@ export default function Yacht() {
   };
 
   return (
-    <View style={styles.main}>
-      <View style={styles.topBar}>
-        <View style={styles.subtractButton}></View>
-        <View style={styles.addButton}></View>
-      </View>
+    <ThemedView style={styles.main}>
+      <ThemedView style={styles.topBar}>
+        <ThemedView style={styles.subtractButton}></ThemedView>
+        <ThemedView style={styles.addButton}></ThemedView>
+      </ThemedView>
 
       {settings.shakeEnabled && (
         <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
       )}
 
-      <View style={styles.diceSection}>
+      <ThemedView style={styles.diceSection}>
         {Array.from({ length: NUM_DICE }).map((_value, index) => {
           return (
             <Dice
@@ -60,14 +61,14 @@ export default function Yacht() {
             />
           );
         })}
-      </View>
+      </ThemedView>
 
-      <View style={styles.bottomBar}>
-        <View style={styles.rollButton}>
+      <ThemedView style={styles.bottomBar}>
+        <ThemedView style={styles.rollButton}>
           <Button disabled={isRolling} onPress={roll} title="Roll" />
-        </View>
-      </View>
-    </View>
+        </ThemedView>
+      </ThemedView>
+    </ThemedView>
   );
 }
 
@@ -83,7 +84,6 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
   },
   topBar: {
     height: "10%",
@@ -94,12 +94,10 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 10,
-    backgroundColor: "white",
   },
   bottomBar: {
     height: "10%",
     justifyContent: "center",
-    backgroundColor: "white",
     flex: 1,
   },
   rollButton: {

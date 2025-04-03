@@ -1,7 +1,9 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import { StyleSheet } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { ThemedSafeAreaView } from "@/components/ThemedSafeAreaView";
+import { ThemedScrollView } from "@/components/ThemedScrollView";
+import { ThemedText } from "@/components/ThemedText";
 
 const liarsDiceRules =
   'Liar\'s dice is a class of dice game for two or more players in which deception is a significant gameplay element. \
@@ -36,61 +38,61 @@ const zanzibar =
 export default function Rules() {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <ScrollView>
-          <Text style={styles.baseText}>
-            <Text style={styles.titleText}>
+      <ThemedSafeAreaView style={styles.container}>
+        <ThemedScrollView>
+          <ThemedText style={styles.baseText}>
+            <ThemedText style={styles.titleText}>
               {"Simple Dice"}
               {"\n"}
-            </Text>
-            <Text>
+            </ThemedText>
+            <ThemedText>
               {simpleDice}
               {"\n"}
-            </Text>
-          </Text>
+            </ThemedText>
+          </ThemedText>
 
-          <Text style={styles.baseText}>
-            <Text style={styles.titleText}>
+          <ThemedText style={styles.baseText}>
+            <ThemedText style={styles.titleText}>
               {"Liar's Dice"}
               {"\n"}
-            </Text>
-            <Text>
+            </ThemedText>
+            <ThemedText>
               {liarsDiceRules}
               {"\n"}
-            </Text>
-          </Text>
+            </ThemedText>
+          </ThemedText>
 
-          <Text style={styles.baseText}>
-            <Text style={styles.titleText}>
+          <ThemedText style={styles.baseText}>
+            <ThemedText style={styles.titleText}>
               {"Threes"}
               {"\n"}
-            </Text>
-            <Text>
+            </ThemedText>
+            <ThemedText>
               {threes}
               {"\n"}
-            </Text>
-          </Text>
+            </ThemedText>
+          </ThemedText>
 
-          <Text style={styles.baseText}>
-            <Text style={styles.titleText}>
+          <ThemedText style={styles.baseText}>
+            <ThemedText style={styles.titleText}>
               {"Poker Dice"}
               {"\n"}
-            </Text>
-            <Text>
+            </ThemedText>
+            <ThemedText>
               {poker}
               {"\n"}{" "}
-            </Text>
-          </Text>
+            </ThemedText>
+          </ThemedText>
 
-          <Text style={styles.baseText}>
-            <Text style={styles.titleText}>
+          <ThemedText style={styles.baseText}>
+            <ThemedText style={styles.titleText}>
               {"Zanzibar"}
               {"\n"}
-            </Text>
-            <Text>{zanzibar}</Text>
-          </Text>
-        </ScrollView>
-      </SafeAreaView>
+            </ThemedText>
+            <ThemedText>{zanzibar}</ThemedText>
+          </ThemedText>
+        </ThemedScrollView>
+      </ThemedSafeAreaView>
     </SafeAreaProvider>
   );
 }

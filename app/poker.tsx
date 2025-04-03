@@ -1,7 +1,9 @@
-import { Text, View, StyleSheet, Button, Pressable } from "react-native";
+import { StyleSheet, Button, Pressable } from "react-native";
 import React from "react";
 import ShakeSensor from "@/components/ShakeSensor";
 import { useSettings } from "@/components/contexts/SettingsContext";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
 import { delay, randomNum } from "@/utils/utils";
 
 enum CardValue {
@@ -148,18 +150,18 @@ export default function PokerDice() {
     );
 
   return (
-    <View style={styles.main}>
-      <View style={styles.topBar}>
-        <View>
-          <Text>Current Hand Ranking: {handLabel}</Text>
-        </View>
-      </View>
+    <ThemedView style={styles.main}>
+      <ThemedView style={styles.topBar}>
+        <ThemedView>
+          <ThemedText>Current Hand Ranking: {handLabel}</ThemedText>
+        </ThemedView>
+      </ThemedView>
 
       {settings.shakeEnabled && (
         <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
       )}
 
-      <View style={styles.cardSection}>
+      <ThemedView style={styles.cardSection}>
         {Array.from({ length: NUM_CARDS }).map((_value, index) => {
           return (
             <Pressable
@@ -170,25 +172,25 @@ export default function PokerDice() {
                 borderColor: selectedCards[index] ? "red" : "black",
               }}
             >
-              <Text
+              <ThemedText
                 style={{
                   ...styles.cardFace,
                   color: selectedCards[index] ? "red" : "black",
                 }}
               >
                 {cardFaces[cards[index]]}
-              </Text>
+              </ThemedText>
             </Pressable>
           );
         })}
-      </View>
+      </ThemedView>
 
-      <View style={styles.bottomBar}>
-        <View style={styles.rollButton}>
+      <ThemedView style={styles.bottomBar}>
+        <ThemedView style={styles.rollButton}>
           <Button disabled={isRolling} onPress={roll} title="Roll" />
-        </View>
-      </View>
-    </View>
+        </ThemedView>
+      </ThemedView>
+    </ThemedView>
   );
 }
 
@@ -212,7 +214,6 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-evenly",
     alignItems: "center",
-    backgroundColor: "white",
   },
   cardFace: {
     fontSize: 75,
@@ -226,12 +227,10 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 50,
-    backgroundColor: "white",
   },
   bottomBar: {
     height: "10%",
     justifyContent: "center",
-    backgroundColor: "white",
     flex: 1,
   },
   rollButton: {
