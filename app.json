@@ -4,7 +4,7 @@
     "slug": "SixSimpleDice",
     "version": "2.2.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/android/adaptive-icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "owner": "20boyerd",
@@ -16,10 +16,19 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.20boyerd.SixSimpleDice"
+      "bundleIdentifier": "com.20boyerd.SixSimpleDice",
+      "icon": {
+        "dark": "./assets/images/ios/dark-icon.png",
+        "light": "./assets/images/ios/light-icon.png",
+        "tinted": "./assets/images/ios/tinted-icon.png"
+      }
     },
     "android": {
-      "package": "com.boyerd.sixsimpledice"
+      "package": "com.boyerd.sixsimpledice",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/android/adaptive-icon.png"
+      },
+      "icon": "./assets/images/android/adaptive-icon.png"
     },
     "web": {
       "bundler": "metro",
