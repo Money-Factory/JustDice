@@ -1,6 +1,7 @@
 import { Text, View, StyleSheet, Button, Pressable } from "react-native";
 import React from "react";
 import ShakeSensor from "@/components/ShakeSensor";
+import { useSettings } from "@/components/contexts/SettingsContext";
 import { delay, randomNum } from "@/utils/utils";
 
 enum CardValue {
@@ -32,6 +33,7 @@ const HIGH_CARD = "High Card (you suck lol)";
 const NUM_CARDS = 5;
 
 export default function PokerDice() {
+  const { settings } = useSettings();
   const [cards, setCards] = React.useState(
     new Array(NUM_CARDS).fill(CardValue.ACE)
   );
@@ -153,7 +155,9 @@ export default function PokerDice() {
         </View>
       </View>
 
-      <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
+      {settings.shakeEnabled && (
+        <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
+      )}
 
       <View style={styles.cardSection}>
         {Array.from({ length: NUM_CARDS }).map((_value, index) => {

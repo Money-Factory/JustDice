@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, Button } from "react-native";
 import React from "react";
+import { useSettings } from "@/components/contexts/SettingsContext";
 import ShakeSensor from "@/components/ShakeSensor";
 import { delay, randomNum } from "@/utils/utils";
 import Dice from "@/components/Dice";
@@ -15,6 +16,7 @@ const pointValues: { [key: number]: number } = {
 const NUM_DICE = 3;
 
 export default function Zanzibar() {
+  const { settings } = useSettings();
   const [rolls, setRolls] = React.useState(0);
   const [diceValues, setDiceValues] = React.useState(
     Array.from({ length: NUM_DICE }, (_, index) => index + 1)
@@ -105,7 +107,9 @@ export default function Zanzibar() {
         </View>
       </View>
 
-      <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
+      {settings.shakeEnabled && (
+        <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
+      )}
 
       <View style={styles.diceSection}>
         {Array.from({ length: NUM_DICE }).map((_value, index) => {
