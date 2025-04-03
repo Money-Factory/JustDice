@@ -1,12 +1,14 @@
 import { View, StyleSheet, Button } from "react-native";
 import React from "react";
 import Dice from "@/components/Dice";
+import { useSettings } from "@/components/contexts/SettingsContext";
 import ShakeSensor from "@/components/ShakeSensor";
 import { delay, randomNum } from "@/utils/utils";
 
 const NUM_DICE = 5;
 
 export default function Yacht() {
+  const { settings } = useSettings();
   const [diceValues, setDiceValues] = React.useState(
     Array.from({ length: NUM_DICE }, (_, index) => index + 1)
   );
@@ -43,7 +45,9 @@ export default function Yacht() {
         <View style={styles.addButton}></View>
       </View>
 
-      <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
+      {settings.shakeEnabled && (
+        <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
+      )}
 
       <View style={styles.diceSection}>
         {Array.from({ length: NUM_DICE }).map((_value, index) => {

@@ -1,6 +1,7 @@
 import { View, StyleSheet, Button } from "react-native";
 import React from "react";
 import Dice from "@/components/Dice";
+import { useSettings } from "@/components/contexts/SettingsContext";
 import ShakeSensor from "@/components/ShakeSensor";
 import { delay, randomNum } from "@/utils/utils";
 
@@ -8,6 +9,7 @@ const MAX_DIE_COUNT = 6;
 const MIN_DIE_COUNT = 0;
 
 export default function Index() {
+  const { settings } = useSettings();
   const [diceCount, setDiceCount] = React.useState(MAX_DIE_COUNT);
   const [diceValues, setDiceValues] = React.useState(
     Array.from({ length: MAX_DIE_COUNT }, (_, index) => index + 1)
@@ -42,7 +44,9 @@ export default function Index() {
         </View>
       </View>
 
-      <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
+      {settings.shakeEnabled && (
+        <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
+      )}
 
       <View style={styles.diceSection}>
         {Array.from({ length: diceCount }).map((_value, index) => {
