@@ -7,14 +7,20 @@ import React, {
 } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+type AppSettings = {
+  shakeEnabled: boolean;
+};
+
 interface SettingsContextType {
-  settings: any;
+  settings: AppSettings;
   updateSetting: (key: string, value: any) => Promise<void>;
   loading: boolean;
 }
 
 const defaultContext: SettingsContextType = {
-  settings: {},
+  settings: {
+    shakeEnabled: false,
+  },
   updateSetting: async (_key: string, _value: any) => {},
   loading: true,
 };
@@ -26,7 +32,7 @@ export const useSettings = () => {
 };
 
 export const SettingsProvider = ({ children }: PropsWithChildren) => {
-  const [settings, setSettings] = useState({});
+  const [settings, setSettings] = useState(defaultContext.settings);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
