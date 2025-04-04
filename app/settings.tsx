@@ -1,5 +1,11 @@
 import React from "react";
-import { ActivityIndicator, Switch, StyleSheet } from "react-native";
+import {
+  ActivityIndicator,
+  Switch,
+  StyleSheet,
+  Appearance,
+} from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import { useSettings } from "@/components/contexts/SettingsContext";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
@@ -21,6 +27,21 @@ export default function Settings() {
             updateSetting("shakeEnabled", !settings.shakeEnabled)
           }
         />
+      </ThemedView>
+      <ThemedView>
+        <ThemedText>Theme:</ThemedText>
+        <Picker
+          selectedValue={settings.theme}
+          onValueChange={(value) => {
+            Appearance.setColorScheme(
+              value === "system" ? Appearance.getColorScheme() : value
+            );
+          }}
+        >
+          <Picker.Item label="System Default" value="system" />
+          <Picker.Item label="Light" value="light" />
+          <Picker.Item label="Dark" value="dark" />
+        </Picker>
       </ThemedView>
     </ThemedView>
   );
