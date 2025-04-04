@@ -41,6 +41,7 @@ export default function Settings() {
           }}
           style={{ color: textColor }}
           mode="dropdown"
+          dropdownIconColor={textColor}
         >
           <Picker.Item label="System Default" value="system" />
           <Picker.Item label="Light" value="light" />
