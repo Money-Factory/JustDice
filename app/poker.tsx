@@ -1,9 +1,10 @@
-import { StyleSheet, Button, Pressable } from "react-native";
+import { StyleSheet, Button, Pressable, Text } from "react-native";
 import React from "react";
 import ShakeSensor from "@/components/ShakeSensor";
 import { useSettings } from "@/components/contexts/SettingsContext";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { useThemeColor } from "@/hooks/useThemeColor";
 import { delay, randomNum } from "@/utils/utils";
 
 enum CardValue {
@@ -149,6 +150,8 @@ export default function PokerDice() {
       selectedCards.map((value, i) => (i === index ? !value : value))
     );
 
+  const cardColor = useThemeColor({}, "text");
+
   return (
     <ThemedView style={styles.main}>
       <ThemedView style={styles.topBar}>
@@ -169,17 +172,17 @@ export default function PokerDice() {
               onPressIn={() => onSelect(index)}
               style={{
                 ...styles.cardContainer,
-                borderColor: selectedCards[index] ? "red" : "black",
+                borderColor: selectedCards[index] ? "red" : cardColor,
               }}
             >
-              <ThemedText
+              <Text
                 style={{
                   ...styles.cardFace,
-                  color: selectedCards[index] ? "red" : "black",
+                  color: selectedCards[index] ? "red" : cardColor,
                 }}
               >
                 {cardFaces[cards[index]]}
-              </ThemedText>
+              </Text>
             </Pressable>
           );
         })}
