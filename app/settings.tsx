@@ -9,9 +9,11 @@ import { Picker } from "@react-native-picker/picker";
 import { useSettings } from "@/components/contexts/SettingsContext";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function Settings() {
   const { settings, updateSetting, loading } = useSettings();
+  const textColor = useThemeColor({}, "text");
 
   if (loading) {
     return <ActivityIndicator size="large" color="#0000ff" />;
@@ -37,6 +39,8 @@ export default function Settings() {
               value === "system" ? Appearance.getColorScheme() : value
             );
           }}
+          style={{ color: textColor }}
+          mode="dropdown"
         >
           <Picker.Item label="System Default" value="system" />
           <Picker.Item label="Light" value="light" />
