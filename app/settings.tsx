@@ -1,32 +1,54 @@
 import React from "react";
 import {
-  View,
-  Text,
   ActivityIndicator,
   Switch,
   StyleSheet,
+  Appearance,
 } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import { useSettings } from "@/components/contexts/SettingsContext";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function Settings() {
   const { settings, updateSetting, loading } = useSettings();
+  const textColor = useThemeColor({}, "text");
 
   if (loading) {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.row}>
-        <Text>Shake to roll:</Text>
+    <ThemedView style={styles.container}>
+      <ThemedView style={styles.row}>
+        <ThemedText>Shake to roll:</ThemedText>
         <Switch
           value={settings.shakeEnabled}
           onValueChange={() =>
             updateSetting("shakeEnabled", !settings.shakeEnabled)
           }
         />
-      </View>
-    </View>
+      </ThemedView>
+      <ThemedView>
+        <ThemedText>Theme:</ThemedText>
+        <Picker
+          selectedValue={settings.theme}
+          onValueChange={(value) => {
+            Appearance.setColorScheme(
+              value === "system" ? Appearance.getColorScheme() : value
+            );
+          }}
+          style={{ color: textColor }}
+          mode="dropdown"
+          dropdownIconColor={textColor}
+        >
+          <Picker.Item label="System Default" value="system" />
+          <Picker.Item label="Light" value="light" />
+          <Picker.Item label="Dark" value="dark" />
+        </Picker>
+      </ThemedView>
+    </ThemedView>
   );
 }
 

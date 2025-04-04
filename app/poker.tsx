@@ -1,7 +1,10 @@
-import { Text, View, StyleSheet, Button, Pressable } from "react-native";
+import { StyleSheet, Button, Pressable, Text } from "react-native";
 import React from "react";
 import ShakeSensor from "@/components/ShakeSensor";
 import { useSettings } from "@/components/contexts/SettingsContext";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { useThemeColor } from "@/hooks/useThemeColor";
 import { delay, randomNum } from "@/utils/utils";
 
 enum CardValue {
@@ -147,19 +150,21 @@ export default function PokerDice() {
       selectedCards.map((value, i) => (i === index ? !value : value))
     );
 
+  const cardColor = useThemeColor({}, "text");
+
   return (
-    <View style={styles.main}>
-      <View style={styles.topBar}>
-        <View>
-          <Text>Current Hand Ranking: {handLabel}</Text>
-        </View>
-      </View>
+    <ThemedView style={styles.main}>
+      <ThemedView style={styles.topBar}>
+        <ThemedView>
+          <ThemedText>Current Hand Ranking: {handLabel}</ThemedText>
+        </ThemedView>
+      </ThemedView>
 
       {settings.shakeEnabled && (
         <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
       )}
 
-      <View style={styles.cardSection}>
+      <ThemedView style={styles.cardSection}>
         {Array.from({ length: NUM_CARDS }).map((_value, index) => {
           return (
             <Pressable
@@ -167,13 +172,13 @@ export default function PokerDice() {
               onPressIn={() => onSelect(index)}
               style={{
                 ...styles.cardContainer,
-                borderColor: selectedCards[index] ? "red" : "black",
+                borderColor: selectedCards[index] ? "red" : cardColor,
               }}
             >
               <Text
                 style={{
                   ...styles.cardFace,
-                  color: selectedCards[index] ? "red" : "black",
+                  color: selectedCards[index] ? "red" : cardColor,
                 }}
               >
                 {cardFaces[cards[index]]}
@@ -181,14 +186,14 @@ export default function PokerDice() {
             </Pressable>
           );
         })}
-      </View>
+      </ThemedView>
 
-      <View style={styles.bottomBar}>
-        <View style={styles.rollButton}>
+      <ThemedView style={styles.bottomBar}>
+        <ThemedView style={styles.rollButton}>
           <Button disabled={isRolling} onPress={roll} title="Roll" />
-        </View>
-      </View>
-    </View>
+        </ThemedView>
+      </ThemedView>
+    </ThemedView>
   );
 }
 
@@ -212,7 +217,6 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-evenly",
     alignItems: "center",
-    backgroundColor: "white",
   },
   cardFace: {
     fontSize: 75,
@@ -226,12 +230,10 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 50,
-    backgroundColor: "white",
   },
   bottomBar: {
     height: "10%",
     justifyContent: "center",
-    backgroundColor: "white",
     flex: 1,
   },
   rollButton: {

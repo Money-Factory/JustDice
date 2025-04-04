@@ -1,7 +1,9 @@
-import { Text, View, StyleSheet, Button } from "react-native";
+import { StyleSheet, Button } from "react-native";
 import React from "react";
 import { useSettings } from "@/components/contexts/SettingsContext";
 import ShakeSensor from "@/components/ShakeSensor";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
 import { delay, randomNum } from "@/utils/utils";
 import Dice from "@/components/Dice";
 
@@ -94,40 +96,42 @@ export default function Zanzibar() {
   };
 
   return (
-    <View style={styles.main}>
-      <View style={styles.topBar}>
-        <View style={styles.containerRow}>
-          <Text style={styles.headerText}>Roll: {rolls}</Text>
-        </View>
-        <View style={styles.containerRow}>
-          <Text style={styles.headerText}>Points: {points}</Text>
-        </View>
-        <View style={styles.containerRow}>
-          <Text style={styles.headerText}>Highest Roll: {highest}</Text>
-        </View>
-      </View>
+    <ThemedView style={styles.main}>
+      <ThemedView style={styles.topBar}>
+        <ThemedView style={styles.containerRow}>
+          <ThemedText style={styles.headerText}>Roll: {rolls}</ThemedText>
+        </ThemedView>
+        <ThemedView style={styles.containerRow}>
+          <ThemedText style={styles.headerText}>Points: {points}</ThemedText>
+        </ThemedView>
+        <ThemedView style={styles.containerRow}>
+          <ThemedText style={styles.headerText}>
+            Highest Roll: {highest}
+          </ThemedText>
+        </ThemedView>
+      </ThemedView>
 
       {settings.shakeEnabled && (
         <ShakeSensor onShake={roll} threshold={4} cooldown={1000} />
       )}
 
-      <View style={styles.diceSection}>
+      <ThemedView style={styles.diceSection}>
         {Array.from({ length: NUM_DICE }).map((_value, index) => {
           return <Dice key={index} value={diceValues[index]} />;
         })}
-      </View>
+      </ThemedView>
 
-      <View style={styles.bottomBar}>
-        <View style={styles.containerRow}>
+      <ThemedView style={styles.bottomBar}>
+        <ThemedView style={styles.containerRow}>
           <Button
             disabled={isRolling || rolls === 3}
             onPress={roll}
             title="Roll"
           />
           <Button disabled={isRolling} onPress={reset} title="Reset" />
-        </View>
-      </View>
-    </View>
+        </ThemedView>
+      </ThemedView>
+    </ThemedView>
   );
 }
 
@@ -136,7 +140,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     height: "80%",
-    backgroundColor: "white",
   },
   containerRow: {
     flexDirection: "row",
@@ -152,18 +155,15 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
   },
   topBar: {
     height: "10%",
     justifyContent: "center",
-    backgroundColor: "white",
     flex: 1,
   },
   bottomBar: {
     height: "10%",
     justifyContent: "center",
-    backgroundColor: "white",
     flex: 1,
   },
   rollButton: {
