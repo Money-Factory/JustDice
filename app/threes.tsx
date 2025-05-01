@@ -30,6 +30,7 @@ export default function ThreesGame() {
     );
     const diceValue = diceValues[index];
     setScore(diceValue === 3 ? score : score + diceValue);
+    setIsRolling(false);
   };
 
   const reset = () => {
@@ -38,30 +39,32 @@ export default function ThreesGame() {
     setLastScore(score);
     setScore(0);
     setSelectedDice(new Array(NUM_DICE).fill(false));
+    setIsRolling(false);
+    
   };
 
   const roll = async () => {
-    setPressDisabled(false);
-    setRollCount(rollCount + 1);
+    if (!isRolling) {
+      setPressDisabled(false);
+      setRollCount(rollCount + 1);
 
-    if (rollCount === MAX_ROLL_COUNT) {
-      reset();
-      setPressDisabled(true);
+      if (rollCount === MAX_ROLL_COUNT) {
+        reset();
+        setPressDisabled(true);
+      }
+
+      setIsRolling(true);
+
+      const TIMES_TO_ROLL = 5;
+      for (let i = 0; i < TIMES_TO_ROLL; i++) {
+        setDiceValues(
+          diceValues.map((value, index) =>
+            selectedDice[index] ? value : randomNum()
+          )
+        );
+        await delay(100);
+      }
     }
-
-    setIsRolling(true);
-
-    const TIMES_TO_ROLL = 5;
-    for (let i = 0; i < TIMES_TO_ROLL; i++) {
-      setDiceValues(
-        diceValues.map((value, index) =>
-          selectedDice[index] ? value : randomNum()
-        )
-      );
-      await delay(100);
-    }
-
-    setIsRolling(false);
   };
 
   return (
