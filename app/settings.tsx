@@ -35,6 +35,7 @@ export default function Settings() {
         <Picker
           selectedValue={settings.theme}
           onValueChange={(value) => {
+            updateSetting("theme", value);
             Appearance.setColorScheme(
               value === "system" ? Appearance.getColorScheme() : value
             );
