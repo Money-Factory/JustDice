@@ -8,7 +8,6 @@ import {
   DefaultTheme,
 } from "@react-navigation/native";
 import { useColorScheme } from "react-native";
-import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function RootLayout() {
   return (
@@ -16,7 +15,7 @@ export default function RootLayout() {
       <ThemeProvider
         value={useColorScheme() === "light" ? DefaultTheme : DarkTheme}
       >
-        <StatusBar backgroundColor={useThemeColor({}, "background")} />
+        <StatusBar backgroundColor={useColorScheme() === "light" ? DefaultTheme.colors.background : DarkTheme.colors.background} />
         <GestureHandlerRootView style={{ flex: 1 }}>
           <Drawer>
             <Drawer.Screen
