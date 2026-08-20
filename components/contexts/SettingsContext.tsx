@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Appearance } from "react-native";
-import { parse } from "@babel/core";
 
 type AppSettings = {
   shakeEnabled: boolean;
