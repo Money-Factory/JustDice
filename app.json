@@ -25,6 +25,8 @@
       },
       "icon": "./assets/images/android/adaptive-icon.png",
       "blockedPermissions": [
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.INTERNET",
         "android.permission.ACTIVITY_RECOGNITION"
       ]
     },
@@ -57,12 +59,6 @@
       "eas": {
         "projectId": "f58c856d-8051-4ba3-925e-0e5da8d25920"
       }
-    },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/f58c856d-8051-4ba3-925e-0e5da8d25920"
     }
   }
 }
